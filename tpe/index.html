@@ -544,6 +544,7 @@
       color: #9f998e;
       font-size: 13px;
     }
+    
 .intro-bg-section {
   position: relative;
   overflow: hidden;
@@ -560,22 +561,24 @@
   z-index: 2;
 }
 
-.logo-watermark-section {
-  position: relative;
-  overflow: hidden;
-}
-
-.logo-watermark-section::before {
+body::before {
   content: "";
-  position: absolute;
-  inset: 0;
-  background: url("tpe-logo-icon.png") center 58% / 560px no-repeat;
-  opacity: 0.14;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 520px;
+  height: 520px;
+  transform: translate(-50%, -50%);
+  background: url("tpe-logo-icon.png") center center / contain no-repeat;
+  opacity: 0.06;
   pointer-events: none;
   z-index: 0;
 }
 
-.logo-watermark-section > .container {
+.site-header,
+.hero,
+.section,
+.footer {
   position: relative;
   z-index: 1;
 }
