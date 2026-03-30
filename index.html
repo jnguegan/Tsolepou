@@ -4,203 +4,721 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tenerife Private Experiences | Concierge Service</title>
+  <meta
+    name="description"
+    content="Private concierge service in Tenerife. Bespoke golf, wine and lifestyle experiences arranged with trusted partners."
+  />
 
   <style>
+    :root {
+      --bg: #0b0b0d;
+      --panel: #121216;
+      --panel-2: #17171d;
+      --text: #f5f2ea;
+      --muted: #b9b3a7;
+      --line: rgba(255,255,255,0.08);
+      --gold: #c8a96b;
+      --gold-soft: #e0c28d;
+      --white: #ffffff;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      color: #111;
-      background: #fff;
+      font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(200,169,107,0.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(200,169,107,0.06), transparent 24%),
+        linear-gradient(180deg, #09090b 0%, #0d0d11 100%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
     }
 
     .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 40px 20px;
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
     }
 
-    h1, h2, h3 {
-      font-weight: 500;
-      margin-bottom: 15px;
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      background: rgba(10,10,12,0.72);
+      border-bottom: 1px solid var(--line);
     }
 
-    p {
-      line-height: 1.6;
-      color: #444;
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .brand-kicker {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .brand-name {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      color: var(--muted);
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(200,169,107,0.45);
+      background: linear-gradient(180deg, rgba(200,169,107,0.16), rgba(200,169,107,0.06));
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      border-color: var(--gold-soft);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
     }
 
     .hero {
-      height: 80vh;
-      background: url('hero-main.jpg') center/cover no-repeat;
+      position: relative;
+      min-height: 92vh;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, rgba(8,8,10,0.82) 0%, rgba(8,8,10,0.58) 42%, rgba(8,8,10,0.30) 100%),
+        linear-gradient(180deg, rgba(8,8,10,0.28) 0%, rgba(8,8,10,0.62) 100%),
+        url("hero-main.jpg") center center / cover no-repeat;
     }
 
-    .hero h1 {
-      font-size: 48px;
-      max-width: 700px;
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 140px;
+      background: linear-gradient(180deg, transparent, rgba(11,11,13,0.95));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      padding: 110px 0 100px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 22px;
+      padding: 8px 14px;
+      border: 1px solid rgba(200,169,107,0.28);
+      border-radius: 999px;
+      color: var(--gold-soft);
+      background: rgba(200,169,107,0.08);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+      color: var(--white);
     }
 
     .hero p {
-      font-size: 18px;
-      color: #eee;
-      margin-top: 10px;
+      margin: 0;
+      max-width: 650px;
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.65;
+      color: #e7e1d5;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
     }
 
     .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 28px;
-      border: 1px solid white;
-      color: white;
-      text-decoration: none;
-      transition: 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 24px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+      border: 1px solid transparent;
     }
 
-    .btn:hover {
-      background: white;
-      color: black;
+    .btn-primary {
+      color: #0b0b0d;
+      background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+      box-shadow: 0 16px 35px rgba(0,0,0,0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.03);
+    }
+
+    .btn-secondary {
+      color: var(--white);
+      background: rgba(255,255,255,0.02);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-2px);
     }
 
     .section {
-      padding: 60px 0;
+      padding: 100px 0;
     }
 
-    .grid {
+    .section-header {
+      max-width: 760px;
+      margin-bottom: 40px;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--gold);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .section-header p,
+    .intro-copy,
+    .info-block p,
+    .card p,
+    .legal-box p,
+    .cta-box p,
+    .footer p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 17px;
+    }
+
+    .intro-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: stretch;
     }
 
-    .card img {
-      width: 100%;
-      border-radius: 8px;
+    .intro-panel,
+    .info-block,
+    .legal-box,
+    .cta-box {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
 
-    .card h3 {
-      margin-top: 15px;
+    .intro-panel {
+      padding: 36px;
+    }
+
+    .intro-aside {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 22px;
+      background:
+        linear-gradient(180deg, rgba(200,169,107,0.12), rgba(255,255,255,0.02)),
+        var(--panel);
+      border: 1px solid rgba(200,169,107,0.16);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .intro-aside strong {
+      display: block;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .intro-aside span {
+      display: block;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .card {
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(200,169,107,0.30);
+    }
+
+    .card-media {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #1a1a1f;
+    }
+
+    .card-media img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card-media img {
+      transform: scale(1.05);
+    }
+
+    .card-body {
+      padding: 26px 24px 26px;
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      color: var(--white);
+      font-size: 27px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .card p {
+      margin: 0 0 18px;
+      font-size: 16px;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .info-block {
+      padding: 28px;
+    }
+
+    .step-number {
+      display: inline-flex;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin-bottom: 18px;
+      color: #0b0b0d;
+      font-weight: 700;
+      background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+    }
+
+    .info-block h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .legal-box {
+      padding: 34px;
+      margin-top: 26px;
+      border-color: rgba(200,169,107,0.16);
+    }
+
+    .cta-wrap {
+      padding-top: 20px;
+    }
+
+    .cta-box {
+      padding: 44px 38px;
+      text-align: center;
+      background:
+        radial-gradient(circle at top, rgba(200,169,107,0.12), transparent 42%),
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border-color: rgba(200,169,107,0.16);
+    }
+
+    .cta-box p {
+      max-width: 720px;
+      margin: 0 auto 24px;
     }
 
     .footer {
-      background: #111;
-      color: #aaa;
-      text-align: center;
-      padding: 40px 20px;
+      border-top: 1px solid var(--line);
+      padding: 40px 0 60px;
+      background: rgba(255,255,255,0.01);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer strong {
+      color: var(--white);
+    }
+
+    .footer p {
+      margin: 6px 0;
       font-size: 14px;
     }
 
-    .cta {
-      text-align: center;
-      padding: 60px 20px;
-      background: #f8f8f8;
+    .muted-small {
+      color: #9f998e;
+      font-size: 13px;
     }
 
-    .cta a {
-      border: 1px solid black;
-      padding: 12px 30px;
-      text-decoration: none;
-      color: black;
+    @media (max-width: 1024px) {
+      .cards,
+      .steps,
+      .intro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: 84vh;
+      }
     }
 
-    .cta a:hover {
-      background: black;
-      color: white;
+    @media (max-width: 640px) {
+      .container {
+        width: min(var(--max), calc(100% - 24px));
+      }
+
+      .nav {
+        min-height: 70px;
+      }
+
+      .brand-name {
+        font-size: 17px;
+      }
+
+      .hero-content {
+        padding: 92px 0 76px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn,
+      .nav-cta {
+        width: 100%;
+      }
+
+      .section {
+        padding: 74px 0;
+      }
+
+      .intro-panel,
+      .intro-aside,
+      .info-block,
+      .legal-box,
+      .cta-box {
+        padding: 24px;
+      }
+
+      h3 {
+        font-size: 23px;
+      }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- HERO -->
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand">
+        <span class="brand-kicker">Private Concierge</span>
+        <span class="brand-name">Tenerife Private Experiences</span>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#experiences">Experiences</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#approach">Our Approach</a>
+      </nav>
+
+      <a class="nav-cta" href="#contact">Plan Your Experience</a>
+    </div>
+  </header>
+
   <section class="hero">
-    <div>
-      <h1>Experience Tenerife, Privately</h1>
-      <p>Bespoke golf, wine and lifestyle experiences — curated for you</p>
-      <a href="#contact" class="btn">Plan My Experience</a>
-    </div>
-  </section>
-
-  <!-- INTRO -->
-  <section class="container section">
-    <h2>Not a Tour. A Tailored Experience.</h2>
-    <p>
-      We operate as a private concierge service, connecting you with Tenerife’s finest venues and trusted providers.
-      Every experience is designed around your preferences — with seamless coordination and premium attention to detail.
-    </p>
-  </section>
-
-  <!-- EXPERIENCES -->
-  <section class="container section">
-    <div class="grid">
-
-      <div class="card">
-        <img src="golf.jpg" alt="Golf Experience">
-        <h3>Golf Experiences</h3>
+    <div class="container">
+      <div class="hero-content">
+        <span class="eyebrow">Bespoke Tenerife Concierge</span>
+        <h1>Experience Tenerife, Privately.</h1>
         <p>
-          Access Tenerife’s most iconic courses with personalized coordination and preferred tee times.
+          Bespoke golf, wine and lifestyle experiences — carefully curated and personally arranged with discretion, elegance and premium attention to detail.
         </p>
-      </div>
 
-      <div class="card">
-        <img src="wine.jpg" alt="Wine Experience">
-        <h3>Wine Experiences</h3>
-        <p>
-          Discover volcanic wines through curated tastings and vineyard visits.
-        </p>
-      </div>
-
-      <div class="card">
-        <img src="lifestyle.jpg" alt="Lifestyle Experience">
-        <h3>Lifestyle Experiences</h3>
-        <p>
-          From scenic escapes to exclusive moments, every detail is arranged for you.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="container section">
-    <h2>How It Works</h2>
-
-    <div class="grid">
-      <div>
-        <h3>1. Tell us your vision</h3>
-        <p>Share your preferences, dates, and interests.</p>
-      </div>
-
-      <div>
-        <h3>2. We curate</h3>
-        <p>We design your experience and coordinate with trusted partners.</p>
-      </div>
-
-      <div>
-        <h3>3. You enjoy</h3>
-        <p>You pay providers directly while we handle the arrangements.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Plan My Experience</a>
+          <a href="mailto:contact@tsolepou.com" class="btn btn-secondary">Contact Concierge</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta" id="contact">
-    <h2>Start Planning Your Experience</h2>
-    <p>Tell us what you have in mind — we’ll take care of the rest.</p>
-    <a href="mailto:contact@tsolepou.com">Contact Concierge</a>
+  <section class="section">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-panel">
+          <span class="section-kicker">Tailored, Not Standard</span>
+          <h2>Not a Tour. A Tailored Experience.</h2>
+          <p class="intro-copy">
+            We operate as a private concierge service, connecting you with Tenerife’s finest venues and trusted providers. Every experience is designed around your preferences, your pace and your standards.
+          </p>
+          <p class="intro-copy">
+            Whether you are planning a refined golf day, a memorable wine escape or a bespoke island itinerary, we coordinate the details so your time in Tenerife feels effortless, elevated and truly personal.
+          </p>
+        </div>
+
+        <div class="intro-aside">
+          <div>
+            <strong>Private & Personal</strong>
+            <span>Every request is handled individually with a discreet, client-first approach.</span>
+          </div>
+          <div>
+            <strong>Trusted Partners</strong>
+            <span>We collaborate with selected third-party providers across Tenerife.</span>
+          </div>
+          <div>
+            <strong>Seamless Coordination</strong>
+            <span>From reservations to recommendations, we manage the details around your plans.</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- FOOTER -->
+  <section class="section" id="experiences">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">Signature Experiences</span>
+        <h2>Curated Around Your Preferences</h2>
+        <p>
+          A refined selection of Tenerife experiences arranged with care, quality and premium positioning.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-media">
+            <img src="golf.jpg" alt="Golf Experience">
+          </div>
+          <div class="card-body">
+            <h3>Golf</h3>
+            <p>Access Tenerife’s most iconic courses with personalized coordination and a premium approach to your day.</p>
+            <ul>
+              <li>Tee-time coordination</li>
+              <li>Course recommendations</li>
+              <li>Dining and after-play planning</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media">
+            <img src="wine.jpg" alt="Wine Experience">
+          </div>
+          <div class="card-body">
+            <h3>Wine</h3>
+            <p>Discover volcanic wines through curated tastings, vineyard visits and carefully selected local settings.</p>
+            <ul>
+              <li>Curated tastings</li>
+              <li>Vineyard visits</li>
+              <li>Food pairing recommendations</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media">
+            <img src="lifestyle.jpg" alt="Lifestyle Experience">
+          </div>
+          <div class="card-body">
+            <h3>Lifestyle</h3>
+            <p>From scenic escapes to exclusive moments, every detail is arranged to match your style and pace.</p>
+            <ul>
+              <li>Bespoke day planning</li>
+              <li>Selected island recommendations</li>
+              <li>Flexible, premium coordination</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">Concierge Process</span>
+        <h2>How It Works</h2>
+      </div>
+
+      <div class="steps">
+        <div class="info-block">
+          <div class="step-number">1</div>
+          <h3>Tell Us Your Vision</h3>
+          <p>Share your dates, interests and preferences so we can understand the experience you want to create.</p>
+        </div>
+
+        <div class="info-block">
+          <div class="step-number">2</div>
+          <h3>We Curate</h3>
+          <p>We design your experience and coordinate arrangements with trusted providers aligned with your request.</p>
+        </div>
+
+        <div class="info-block">
+          <div class="step-number">3</div>
+          <h3>You Enjoy</h3>
+          <p>You enjoy a seamless experience while providers deliver the relevant services directly.</p>
+        </div>
+      </div>
+
+      <div class="legal-box" id="approach">
+        <span class="section-kicker">Our Approach</span>
+        <h2>Premium Coordination, Clear Positioning</h2>
+        <p>
+          We act as an independent private concierge service and collaborate with selected third-party providers across Tenerife. Services and experiences are fulfilled by the relevant provider.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-wrap" id="contact">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-kicker">Start Planning</span>
+        <h2>Begin Your Tenerife Experience</h2>
+        <p>
+          Tell us what you have in mind and we will help shape a refined, personalised experience around your preferences.
+        </p>
+        <div class="hero-actions" style="justify-content:center;">
+          <a href="mailto:contact@tsolepou.com" class="btn btn-primary">Contact Concierge</a>
+          <a href="#top" class="btn btn-secondary">Back to Top</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
-    <p><strong>Tenerife Private Experiences</strong></p>
-    <p>Private concierge service in Tenerife</p>
-    <p>Operated by TSOLEPOU INTERNATIONAL SLU</p>
-    <br>
-    <p>
-      We act as an independent concierge service. All services are provided by third-party licensed operators.
-    </p>
+    <div class="container footer-inner">
+      <div>
+        <p><strong>Tenerife Private Experiences</strong></p>
+        <p>Private concierge service in Tenerife</p>
+        <p>Operated by <strong>TSOLEPOU INTERNATIONAL SLU</strong></p>
+      </div>
+
+      <div>
+        <p class="muted-small">
+          We act as an independent concierge service. All services are provided by third-party operators.
+        </p>
+      </div>
+    </div>
   </footer>
 
 </body>
