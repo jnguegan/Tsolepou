@@ -645,6 +645,26 @@
   position: relative;
   z-index: 1;
 }
+      .logo-watermark-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-watermark-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: url("tpe-logo-icon.png") center center / 420px no-repeat;
+
+  opacity: 0.04; /* VERY IMPORTANT: keep low */
+  pointer-events: none;
+}
+
+.logo-watermark-section > .container {
+  position: relative;
+  z-index: 1;
+}
     }
   </style>
 </head>
@@ -790,7 +810,7 @@
     </div>
   </section>
 
-  <section class="section" id="how-it-works">
+ <section class="section logo-watermark-section" id="how-it-works">
     <div class="container">
       <div class="section-header">
         <span class="section-kicker" id="howKicker">Concierge Process</span>
@@ -827,7 +847,7 @@
     </div>
   </section>
 
-  <section class="section cta-wrap" id="contact">
+ <section class="section cta-wrap logo-watermark-section" id="contact">
     <div class="container">
       <div class="cta-box">
         <span class="section-kicker" id="ctaKicker">Start Planning</span>
