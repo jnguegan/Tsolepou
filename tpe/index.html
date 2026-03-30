@@ -544,6 +544,41 @@
       color: #9f998e;
       font-size: 13px;
     }
+.intro-bg-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(8,8,10,0.72), rgba(8,8,10,0.78)),
+    url("teide.jpg") center center / cover no-repeat;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.intro-bg-section .intro-panel,
+.intro-bg-section .intro-aside {
+  position: relative;
+  z-index: 2;
+}
+
+.logo-watermark-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-watermark-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("tpe-logo-icon.png") center center / 420px no-repeat;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.logo-watermark-section > .container {
+  position: relative;
+  z-index: 1;
+}
 
     @media (max-width: 1024px) {
       .cards,
@@ -611,40 +646,7 @@
         font-size: 23px;
       }
 
-      .intro-bg-section {
-  position: relative;
-  overflow: hidden;
-  background:
-    linear-gradient(180deg, rgba(8,8,10,0.72), rgba(8,8,10,0.78)),
-    url("teide.jpg") center center / cover no-repeat;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
 
-.intro-bg-section .intro-panel,
-.intro-bg-section .intro-aside {
-  position: relative;
-  z-index: 2;
-}
-
-.logo-watermark-section {
-  position: relative;
-  overflow: hidden;
-}
-
-.logo-watermark-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("tpe-logo-icon.png") center center / 420px no-repeat;
-  opacity: 0.045;
-  pointer-events: none;
-}
-
-.logo-watermark-section > .container {
-  position: relative;
-  z-index: 1;
-}
       .logo-watermark-section {
   position: relative;
   overflow: hidden;
