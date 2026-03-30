@@ -203,18 +203,18 @@
       border-color: var(--gold-soft);
     }
 
-    .hero {
-      position: relative;
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      border-bottom: 1px solid var(--line);
-      background:
-        linear-gradient(90deg, rgba(8,8,10,0.82) 0%, rgba(8,8,10,0.58) 42%, rgba(8,8,10,0.30) 100%),
-        linear-gradient(180deg, rgba(8,8,10,0.28) 0%, rgba(8,8,10,0.62) 100%),
-        url("hero-main.jpg") center center / cover no-repeat;
-    }
+ .hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(90deg, rgba(8,8,10,0.82) 0%, rgba(8,8,10,0.58) 42%, rgba(8,8,10,0.30) 100%),
+    linear-gradient(180deg, rgba(8,8,10,0.28) 0%, rgba(8,8,10,0.62) 100%),
+    url("hero-main.jpg") center center / cover no-repeat fixed;
+}
 
     .hero::after {
       content: "";
@@ -601,6 +601,19 @@ body::before {
         flex-direction: column;
         align-items: stretch;
       }
+    .hero {
+    background:
+      linear-gradient(90deg, rgba(8,8,10,0.82) 0%, rgba(8,8,10,0.58) 42%, rgba(8,8,10,0.30) 100%),
+      linear-gradient(180deg, rgba(8,8,10,0.28) 0%, rgba(8,8,10,0.62) 100%),
+      url("hero-main.jpg") center center / cover no-repeat;
+  }
+
+  .intro-bg-section {
+    background:
+      linear-gradient(180deg, rgba(8,8,10,0.72), rgba(8,8,10,0.78)),
+      url("teide.jpg") center center / cover no-repeat;
+  }
+}
 
       .lang-switcher {
         justify-content: center;
