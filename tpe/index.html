@@ -595,13 +595,26 @@ body::before {
       }
     }
 
-    @media (max-width: 768px) {
-      .header-top,
-      .nav-row {
-        flex-direction: column;
-        align-items: stretch;
-      }
-    .hero {
+   @media (max-width: 768px) {
+  .header-top,
+  .nav-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .lang-switcher {
+    justify-content: center;
+  }
+
+  .nav-links {
+    justify-content: center;
+  }
+
+  .nav-cta {
+    width: 100%;
+  }
+
+  .hero {
     background:
       linear-gradient(90deg, rgba(8,8,10,0.82) 0%, rgba(8,8,10,0.58) 42%, rgba(8,8,10,0.30) 100%),
       linear-gradient(180deg, rgba(8,8,10,0.28) 0%, rgba(8,8,10,0.62) 100%),
