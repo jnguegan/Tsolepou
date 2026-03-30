@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Tenerife Private Experiences</title>
+  <meta
+    name="description"
+    content="Contact Tenerife Private Experiences to plan your bespoke golf, wine and lifestyle experience in Tenerife."
+  />
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --panel: #121216;
+      --panel-2: #17171d;
+      --text: #f5f2ea;
+      --muted: #b9b3a7;
+      --line: rgba(255,255,255,0.08);
+      --gold: #c8a96b;
+      --gold-soft: #e0c28d;
+      --white: #ffffff;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(200,169,107,0.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(200,169,107,0.06), transparent 24%),
+        linear-gradient(180deg, #09090b 0%, #0d0d11 100%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body.rtl {
+      direction: rtl;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      background: rgba(10,10,12,0.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 8px 0 8px;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .brand-kicker {
+      font-size: 11px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .brand-name {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.01em;
+    }
+
+    .lang-switcher {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      padding: 9px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      line-height: 1;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .lang-btn:hover {
+      color: var(--text);
+      border-color: rgba(200,169,107,0.35);
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(180deg, rgba(200,169,107,0.18), rgba(200,169,107,0.08));
+      border-color: rgba(200,169,107,0.45);
+      color: var(--gold-soft);
+    }
+
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      color: var(--muted);
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--white);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(200,169,107,0.45);
+      background: linear-gradient(180deg, rgba(200,169,107,0.16), rgba(200,169,107,0.06));
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+      width: auto !important;
+      align-self: center;
+      flex: 0 0 auto;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      border-color: var(--gold-soft);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 520px;
+      height: 520px;
+      transform: translate(-50%, -50%);
+      background: url("tpe-logo-icon.png") center center / contain no-repeat;
+      opacity: 0.06;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    main,
+    .footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-page {
+      min-height: 100vh;
+      padding: 240px 0 90px;
+    }
+
+    .page-header {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--gold);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(38px, 6vw, 64px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .page-header p,
+    .contact-card p,
+    .contact-card li,
+    .footer p,
+    label,
+    input,
+    textarea,
+    select {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 17px;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .contact-card,
+    .form-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-card {
+      padding: 34px;
+    }
+
+    .contact-card h2,
+    .form-card h2 {
+      margin: 0 0 12px;
+      font-size: 30px;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .contact-list {
+      margin: 22px 0 0;
+      padding-left: 18px;
+    }
+
+    .contact-list li {
+      margin-bottom: 12px;
+    }
+
+    .contact-methods {
+      display: grid;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .contact-method {
+      padding: 18px 20px;
+      border: 1px solid rgba(200,169,107,0.16);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(200,169,107,0.08), rgba(255,255,255,0.01));
+    }
+
+    .contact-method strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--white);
+      font-size: 15px;
+      letter-spacing: 0.04em;
+    }
+
+    .contact-method a {
+      color: var(--gold-soft);
+      word-break: break-word;
+    }
+
+    .form-card {
+      padding: 34px;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: var(--white);
+      line-height: 1.5;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      border-radius: 16px;
+      padding: 14px 16px;
+      font: inherit;
+      outline: none;
+      transition: border-color 0.25s ease, background 0.25s ease;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: rgba(200,169,107,0.45);
+      background: rgba(255,255,255,0.05);
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 24px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      color: #0b0b0d;
+      background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+      box-shadow: 0 16px 35px rgba(0,0,0,0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.03);
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 40px 0 60px;
+      background: rgba(255,255,255,0.01);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer strong {
+      color: var(--white);
+    }
+
+    .footer p {
+      margin: 6px 0;
+      font-size: 14px;
+    }
+
+    .muted-small {
+      color: #9f998e;
+      font-size: 13px;
+    }
+
+    @media (max-width: 1024px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-top,
+      .nav-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .lang-switcher {
+        justify-content: center;
+      }
+
+      .nav-links {
+        justify-content: center;
+      }
+
+      .nav-cta {
+        width: 100%;
+      }
+
+      .contact-page {
+        padding-top: 260px;
+      }
+
+      .field-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(var(--max), calc(100% - 24px));
+      }
+
+      .brand img {
+        width: 96px;
+        height: 96px;
+      }
+
+      .contact-card,
+      .form-card {
+        padding: 24px;
+      }
+
+      .contact-page {
+        padding-top: 230px;
+        padding-bottom: 70px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="header-top">
+        <a class="brand" href="index.html">
+          <img src="tpe-logo-icon.png" alt="TPE logo">
+          <div class="brand-text">
+            <span class="brand-kicker" id="brandKicker">Private Brand</span>
+            <span class="brand-name" id="brandName">Tenerife Private Experiences</span>
+          </div>
+        </a>
+
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="fr">FR</button>
+          <button class="lang-btn" data-lang="es">ES</button>
+          <button class="lang-btn" data-lang="de">DE</button>
+          <button class="lang-btn" data-lang="ru">RU</button>
+          <button class="lang-btn" data-lang="ar">AR</button>
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <nav class="nav-links">
+          <a href="index.html#experiences" id="navExperiences">Experiences</a>
+          <a href="index.html#how-it-works" id="navHow">How It Works</a>
+          <a href="index.html#approach" id="navApproach">Our Approach</a>
+          <a href="contact.html" class="active" id="navContact">Contact</a>
+        </nav>
+
+        <a class="nav-cta" href="contact.html" id="navCta">Plan Your Experience</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="contact-page">
+    <div class="container">
+      <div class="page-header">
+        <span class="section-kicker" id="contactKicker">Private Enquiries</span>
+        <h1 id="contactTitle">Plan Your Tenerife Experience</h1>
+        <p id="contactIntro">
+          Tell us what you have in mind and we will help shape a refined, personalised Tenerife experience around your dates, interests and preferences.
+        </p>
+      </div>
+
+      <div class="contact-layout">
+        <section class="contact-card">
+          <h2 id="infoTitle">How We Work</h2>
+          <p id="infoText">
+            We operate as a private concierge service, coordinating requests with selected third-party providers across Tenerife.
+          </p>
+
+          <ul class="contact-list">
+            <li id="infoBullet1">Private and tailored enquiries only</li>
+            <li id="infoBullet2">Golf, wine and lifestyle requests welcome</li>
+            <li id="infoBullet3">Discreet and premium coordination</li>
+          </ul>
+
+          <div class="contact-methods">
+            <div class="contact-method">
+              <strong id="emailLabel">Email</strong>
+              <a href="mailto:contact@tsolepou.com" id="emailValue">contact@tsolepou.com</a>
+            </div>
+
+            <div class="contact-method">
+              <strong id="responseLabel">Response</strong>
+              <span id="responseValue">We aim to reply as promptly as possible to serious enquiries.</span>
+            </div>
+
+            <div class="contact-method">
+              <strong id="noteLabel">Note</strong>
+              <span id="noteValue">All services and experiences are fulfilled by the relevant selected provider.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-card">
+          <h2 id="formTitle">Send Your Request</h2>
+          <p id="formText">
+            Share a few details below and we will review your request.
+          </p>
+
+          <form class="form-grid" action="https://formsubmit.co/contact@tsolepou.com" method="POST">
+            <input type="hidden" name="_subject" value="New Tenerife Private Experiences enquiry">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+
+            <div class="field-row">
+              <div>
+                <label for="fullName" id="labelName">Full name</label>
+                <input type="text" id="fullName" name="fullName" required>
+              </div>
+
+              <div>
+                <label for="email" id="labelEmail">Email address</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div>
+                <label for="interest" id="labelInterest">Experience type</label>
+                <select id="interest" name="interest">
+                  <option value="Golf">Golf</option>
+                  <option value="Wine">Wine</option>
+                  <option value="Lifestyle">Lifestyle</option>
+                  <option value="Combination">Combination</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="dates" id="labelDates">Preferred dates</label>
+                <input type="text" id="dates" name="dates" placeholder="e.g. 12–15 May">
+              </div>
+            </div>
+
+            <div>
+              <label for="message" id="labelMessage">Your request</label>
+              <textarea id="message" name="message" placeholder="Tell us about your plans, preferences and any important details."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="submitBtn">Send Request</button>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <p><strong id="footerBrand">Tenerife Private Experiences</strong></p>
+        <p id="footerLine1">Private concierge service in Tenerife</p>
+        <p id="footerLine2">Operated by <strong>TSOLEPOU INTERNATIONAL SL</strong></p>
+      </div>
+
+      <div>
+        <p class="muted-small" id="footerLegal">
+          We act as an independent concierge service. All services are provided by third-party operators.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        title: "Contact | Tenerife Private Experiences",
+        description: "Contact Tenerife Private Experiences to plan your bespoke golf, wine and lifestyle experience in Tenerife.",
+        dir: "ltr",
+        brandKicker: "Private Brand",
+        brandName: "Tenerife Private Experiences",
+        navExperiences: "Experiences",
+        navHow: "How It Works",
+        navApproach: "Our Approach",
+        navContact: "Contact",
+        navCta: "Plan Your Experience",
+        contactKicker: "Private Enquiries",
+        contactTitle: "Plan Your Tenerife Experience",
+        contactIntro: "Tell us what you have in mind and we will help shape a refined, personalised Tenerife experience around your dates, interests and preferences.",
+        infoTitle: "How We Work",
+        infoText: "We operate as a private concierge service, coordinating requests with selected third-party providers across Tenerife.",
+        infoBullet1: "Private and tailored enquiries only",
+        infoBullet2: "Golf, wine and lifestyle requests welcome",
+        infoBullet3: "Discreet and premium coordination",
+        emailLabel: "Email",
+        emailValue: "contact@tsolepou.com",
+        responseLabel: "Response",
+        responseValue: "We aim to reply as promptly as possible to serious enquiries.",
+        noteLabel: "Note",
+        noteValue: "All services and experiences are fulfilled by the relevant selected provider.",
+        formTitle: "Send Your Request",
+        formText: "Share a few details below and we will review your request.",
+        labelName: "Full name",
+        labelEmail: "Email address",
+        labelInterest: "Experience type",
+        labelDates: "Preferred dates",
+        labelMessage: "Your request",
+        submitBtn: "Send Request",
+        footerBrand: "Tenerife Private Experiences",
+        footerLine1: "Private concierge service in Tenerife",
+        footerLine2: "Operated by TSOLEPOU INTERNATIONAL SL",
+        footerLegal: "We act as an independent concierge service. All services are provided by third-party operators."
+      },
+      fr: {
+        title: "Contact | Expériences Privées à Tenerife",
+        description: "Contactez Expériences Privées à Tenerife pour organiser votre expérience sur mesure de golf, vin et art de vivre à Tenerife.",
+        dir: "ltr",
+        brandKicker: "Marque Privée",
+        brandName: "Expériences Privées à Tenerife",
+        navExperiences: "Expériences",
+        navHow: "Fonctionnement",
+        navApproach: "Notre Approche",
+        navContact: "Contact",
+        navCta: "Planifier Votre Expérience",
+        contactKicker: "Demandes Privées",
+        contactTitle: "Planifiez Votre Expérience à Tenerife",
+        contactIntro: "Dites-nous ce que vous avez en tête et nous vous aiderons à façonner une expérience raffinée et personnalisée à Tenerife selon vos dates, vos intérêts et vos préférences.",
+        infoTitle: "Notre Fonctionnement",
+        infoText: "Nous opérons comme un service de conciergerie privée, en coordonnant les demandes avec des prestataires tiers sélectionnés à travers Tenerife.",
+        infoBullet1: "Demandes privées et sur mesure uniquement",
+        infoBullet2: "Demandes golf, vin et lifestyle bienvenues",
+        infoBullet3: "Coordination discrète et premium",
+        emailLabel: "Email",
+        emailValue: "contact@tsolepou.com",
+        responseLabel: "Réponse",
+        responseValue: "Nous nous efforçons de répondre aussi rapidement que possible aux demandes sérieuses.",
+        noteLabel: "Note",
+        noteValue: "Tous les services et expériences sont assurés par le prestataire sélectionné concerné.",
+        formTitle: "Envoyez Votre Demande",
+        formText: "Partagez quelques détails ci-dessous et nous examinerons votre demande.",
+        labelName: "Nom complet",
+        labelEmail: "Adresse email",
+        labelInterest: "Type d’expérience",
+        labelDates: "Dates souhaitées",
+        labelMessage: "Votre demande",
+        submitBtn: "Envoyer la Demande",
+        footerBrand: "Expériences Privées à Tenerife",
+        footerLine1: "Service de conciergerie privée à Tenerife",
+        footerLine2: "Exploité par TSOLEPOU INTERNATIONAL SL",
+        footerLegal: "Nous agissons en tant que service de conciergerie indépendant. Tous les services sont fournis par des opérateurs tiers."
+      },
+      es: {
+        title: "Contacto | Experiencias Privadas en Tenerife",
+        description: "Contacta con Experiencias Privadas en Tenerife para planificar tu experiencia personalizada de golf, vino y estilo de vida en Tenerife.",
+        dir: "ltr",
+        brandKicker: "Marca Privada",
+        brandName: "Experiencias Privadas en Tenerife",
+        navExperiences: "Experiencias",
+        navHow: "Cómo Funciona",
+        navApproach: "Nuestro Enfoque",
+        navContact: "Contacto",
+        navCta: "Planifica Tu Experiencia",
+        contactKicker: "Consultas Privadas",
+        contactTitle: "Planifica Tu Experiencia en Tenerife",
+        contactIntro: "Cuéntanos lo que tienes en mente y te ayudaremos a dar forma a una experiencia refinada y personalizada en Tenerife según tus fechas, intereses y preferencias.",
+        infoTitle: "Cómo Trabajamos",
+        infoText: "Operamos como un servicio de concierge privado, coordinando solicitudes con proveedores externos seleccionados en Tenerife.",
+        infoBullet1: "Solo consultas privadas y a medida",
+        infoBullet2: "Bienvenidas solicitudes de golf, vino y lifestyle",
+        infoBullet3: "Coordinación discreta y premium",
+        emailLabel: "Email",
+        emailValue: "contact@tsolepou.com",
+        responseLabel: "Respuesta",
+        responseValue: "Intentamos responder lo antes posible a las consultas serias.",
+        noteLabel: "Nota",
+        noteValue: "Todos los servicios y experiencias son prestados por el proveedor seleccionado correspondiente.",
+        formTitle: "Envía Tu Solicitud",
+        formText: "Comparte algunos detalles a continuación y revisaremos tu solicitud.",
+        labelName: "Nombre completo",
+        labelEmail: "Correo electrónico",
+        labelInterest: "Tipo de experiencia",
+        labelDates: "Fechas preferidas",
+        labelMessage: "Tu solicitud",
+        submitBtn: "Enviar Solicitud",
+        footerBrand: "Experiencias Privadas en Tenerife",
+        footerLine1: "Servicio de concierge privado en Tenerife",
+        footerLine2: "Operado por TSOLEPOU INTERNATIONAL SL",
+        footerLegal: "Actuamos como un servicio de concierge independiente. Todos los servicios son prestados por operadores externos."
+      },
+      de: {
+        title: "Kontakt | Private Erlebnisse auf Teneriffa",
+        description: "Kontaktieren Sie Private Erlebnisse auf Teneriffa, um Ihr maßgeschneidertes Golf-, Wein- und Lifestyle-Erlebnis auf Teneriffa zu planen.",
+        dir: "ltr",
+        brandKicker: "Private Marke",
+        brandName: "Private Erlebnisse auf Teneriffa",
+        navExperiences: "Erlebnisse",
+        navHow: "So Funktioniert Es",
+        navApproach: "Unser Ansatz",
+        navContact: "Kontakt",
+        navCta: "Erlebnis Planen",
+        contactKicker: "Private Anfragen",
+        contactTitle: "Planen Sie Ihr Teneriffa-Erlebnis",
+        contactIntro: "Teilen Sie uns Ihre Vorstellungen mit und wir helfen Ihnen, ein raffiniertes und persönliches Teneriffa-Erlebnis rund um Ihre Daten, Interessen und Wünsche zu gestalten.",
+        infoTitle: "So Arbeiten Wir",
+        infoText: "Wir agieren als privater Concierge-Service und koordinieren Anfragen mit ausgewählten Drittanbietern auf Teneriffa.",
+        infoBullet1: "Nur private und maßgeschneiderte Anfragen",
+        infoBullet2: "Golf-, Wein- und Lifestyle-Anfragen willkommen",
+        infoBullet3: "Diskrete Premium-Koordination",
+        emailLabel: "E-Mail",
+        emailValue: "contact@tsolepou.com",
+        responseLabel: "Antwort",
+        responseValue: "Wir bemühen uns, ernsthafte Anfragen so schnell wie möglich zu beantworten.",
+        noteLabel: "Hinweis",
+        noteValue: "Alle Dienstleistungen und Erlebnisse werden vom jeweils ausgewählten Anbieter erbracht.",
+        formTitle: "Senden Sie Ihre Anfrage",
+        formText: "Teilen Sie unten einige Details mit und wir prüfen Ihre Anfrage.",
+        labelName: "Vollständiger Name",
+        labelEmail: "E-Mail-Adresse",
+        labelInterest: "Art des Erlebnisses",
+        labelDates: "Bevorzugte Daten",
+        labelMessage: "Ihre Anfrage",
+        submitBtn: "Anfrage Senden",
+        footerBrand: "Private Erlebnisse auf Teneriffa",
+        footerLine1: "Privater Concierge-Service auf Teneriffa",
+        footerLine2: "Betrieben von TSOLEPOU INTERNATIONAL SL",
+        footerLegal: "Wir handeln als unabhängiger Concierge-Service. Alle Leistungen werden von Drittanbietern erbracht."
+      },
+      ru: {
+        title: "Контакты | Частные впечатления на Тенерифе",
+        description: "Свяжитесь с Частными впечатлениями на Тенерифе, чтобы спланировать индивидуальный опыт гольфа, вина и lifestyle на Тенерифе.",
+        dir: "ltr",
+        brandKicker: "Частный Бренд",
+        brandName: "Частные впечатления на Тенерифе",
+        navExperiences: "Впечатления",
+        navHow: "Как Это Работает",
+        navApproach: "Наш Подход",
+        navContact: "Контакты",
+        navCta: "Спланировать Впечатление",
+        contactKicker: "Частные Запросы",
+        contactTitle: "Спланируйте Ваш Опыт на Тенерифе",
+        contactIntro: "Расскажите нам, что вы хотите, и мы поможем создать изысканный и персонализированный опыт на Тенерифе с учетом ваших дат, интересов и предпочтений.",
+        infoTitle: "Как Мы Работаем",
+        infoText: "Мы работаем как частный concierge-сервис, координируя запросы с выбранными сторонними провайдерами по всему Тенерифе.",
+        infoBullet1: "Только частные и индивидуальные запросы",
+        infoBullet2: "Запросы по гольфу, вину и lifestyle приветствуются",
+        infoBullet3: "Деликатная премиальная координация",
+        emailLabel: "Email",
+        emailValue: "contact@tsolepou.com",
+        responseLabel: "Ответ",
+        responseValue: "Мы стараемся отвечать на серьезные запросы как можно быстрее.",
+        noteLabel: "Примечание",
+        noteValue: "Все услуги и впечатления предоставляются соответствующим выбранным провайдером.",
+        formTitle: "Отправьте Ваш Запрос",
+        formText: "Поделитесь несколькими деталями ниже, и мы рассмотрим ваш запрос.",
+        labelName: "Полное имя",
+        labelEmail: "Адрес email",
+        labelInterest: "Тип опыта",
+        labelDates: "Предпочтительные даты",
+        labelMessage: "Ваш запрос",
+        submitBtn: "Отправить Запрос",
+        footerBrand: "Частные впечатления на Тенерифе",
+        footerLine1: "Частный concierge-сервис на Тенерифе",
+        footerLine2: "Управляется TSOLEPOU INTERNATIONAL SL",
+        footerLegal: "Мы действуем как независимый concierge-сервис. Все услуги предоставляются сторонними операторами."
+      },
+      ar: {
+        title: "اتصل بنا | تجارب تينيريفي الخاصة",
+        description: "تواصل مع تجارب تينيريفي الخاصة لتخطيط تجربتك المخصصة في الجولف والنبيذ وأسلوب الحياة في تينيريفي.",
+        dir: "rtl",
+        brandKicker: "علامة خاصة",
+        brandName: "تجارب تينيريفي الخاصة",
+        navExperiences: "التجارب",
+        navHow: "كيف تعمل",
+        navApproach: "نهجنا",
+        navContact: "اتصل بنا",
+        navCta: "خطط لتجربتك",
+        contactKicker: "استفسارات خاصة",
+        contactTitle: "خطط لتجربتك في تينيريفي",
+        contactIntro: "أخبرنا بما يدور في ذهنك وسنساعدك في تصميم تجربة راقية ومخصصة في تينيريفي وفقاً لتواريخك واهتماماتك وتفضيلاتك.",
+        infoTitle: "كيف نعمل",
+        infoText: "نعمل كخدمة كونسيرج خاصة ونسق الطلبات مع مزودين خارجيين مختارين في أنحاء تينيريفي.",
+        infoBullet1: "استفسارات خاصة ومخصصة فقط",
+        infoBullet2: "طلبات الجولف والنبيذ وأسلوب الحياة مرحب بها",
+        infoBullet3: "تنسيق راقٍ وسري",
+        emailLabel: "البريد الإلكتروني",
+        emailValue: "contact@tsolepou.com",
+        responseLabel: "الرد",
+        responseValue: "نسعى للرد بأسرع ما يمكن على الاستفسارات الجادة.",
+        noteLabel: "ملاحظة",
+        noteValue: "يتم تنفيذ جميع الخدمات والتجارب من قبل المزود المختار المعني.",
+        formTitle: "أرسل طلبك",
+        formText: "شارك بعض التفاصيل أدناه وسنراجع طلبك.",
+        labelName: "الاسم الكامل",
+        labelEmail: "البريد الإلكتروني",
+        labelInterest: "نوع التجربة",
+        labelDates: "التواريخ المفضلة",
+        labelMessage: "طلبك",
+        submitBtn: "إرسال الطلب",
+        footerBrand: "تجارب تينيريفي الخاصة",
+        footerLine1: "خدمة كونسيرج خاصة في تينيريفي",
+        footerLine2: "تدار من قبل TSOLEPOU INTERNATIONAL SL",
+        footerLegal: "نعمل كخدمة كونسيرج مستقلة. جميع الخدمات يتم تقديمها من قبل جهات خارجية."
+      }
+    };
+
+    const ids = [
+      "brandKicker","brandName","navExperiences","navHow","navApproach","navContact","navCta",
+      "contactKicker","contactTitle","contactIntro",
+      "infoTitle","infoText","infoBullet1","infoBullet2","infoBullet3",
+      "emailLabel","emailValue","responseLabel","responseValue","noteLabel","noteValue",
+      "formTitle","formText","labelName","labelEmail","labelInterest","labelDates","labelMessage","submitBtn",
+      "footerBrand","footerLine1","footerLine2","footerLegal"
+    ];
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const buttons = document.querySelectorAll(".lang-btn");
+
+    function setLanguage(lang) {
+      const t = translations[lang] || translations.en;
+
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && t[id]) el.textContent = t[id];
+      });
+
+      document.title = t.title;
+      metaDescription.setAttribute("content", t.description);
+      document.documentElement.lang = lang;
+      document.documentElement.dir = t.dir;
+      document.body.classList.toggle("rtl", t.dir === "rtl");
+
+      buttons.forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+
+      localStorage.setItem("tsolepouLandingLang", lang);
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
+    });
+
+    const savedLang = localStorage.getItem("tsolepouLandingLang") || "en";
+    setLanguage(savedLang);
+  </script>
+</body>
+</html>
