@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tenerife Private Experiences</title>
+  <meta
+    name="description"
+    content="Bespoke golf, wine and lifestyle experiences in Tenerife. Carefully curated and privately arranged."
+  />
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --panel: #121216;
+      --panel-2: #17171d;
+      --text: #f5f2ea;
+      --muted: #b9b3a7;
+      --line: rgba(255,255,255,0.08);
+      --gold: #c8a96b;
+      --gold-soft: #e0c28d;
+      --white: #ffffff;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(200,169,107,0.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(200,169,107,0.06), transparent 24%),
+        linear-gradient(180deg, #09090b 0%, #0d0d11 100%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body.rtl {
+      direction: rtl;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      background: rgba(10,10,12,0.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 14px 0 16px;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .brand-kicker {
+      font-size: 11px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    body.rtl .brand-kicker {
+      letter-spacing: 0.08em;
+    }
+
+    .brand-name {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.01em;
+    }
+
+    .lang-switcher {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      padding: 9px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      line-height: 1;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .lang-btn:hover {
+      color: var(--text);
+      border-color: rgba(200,169,107,0.35);
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(180deg, rgba(200,169,107,0.18), rgba(200,169,107,0.08));
+      border-color: rgba(200,169,107,0.45);
+      color: var(--gold-soft);
+    }
+
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      color: var(--muted);
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(200,169,107,0.45);
+      background: linear-gradient(180deg, rgba(200,169,107,0.16), rgba(200,169,107,0.06));
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      border-color: var(--gold-soft);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, rgba(8,8,10,0.82) 0%, rgba(8,8,10,0.58) 42%, rgba(8,8,10,0.30) 100%),
+        linear-gradient(180deg, rgba(8,8,10,0.28) 0%, rgba(8,8,10,0.62) 100%),
+        url("hero-main.jpg") center center / cover no-repeat;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 140px;
+      background: linear-gradient(180deg, transparent, rgba(11,11,13,0.95));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      padding: 110px 0 100px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 22px;
+      padding: 8px 14px;
+      border: 1px solid rgba(200,169,107,0.28);
+      border-radius: 999px;
+      color: var(--gold-soft);
+      background: rgba(200,169,107,0.08);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    body.rtl .eyebrow {
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 650px;
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.65;
+      color: #e7e1d5;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 24px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      color: #0b0b0d;
+      background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+      box-shadow: 0 16px 35px rgba(0,0,0,0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.03);
+    }
+
+    .btn-secondary {
+      color: var(--white);
+      background: rgba(255,255,255,0.02);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-2px);
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      max-width: 760px;
+      margin-bottom: 40px;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--gold);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    body.rtl .section-kicker {
+      letter-spacing: 0.08em;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .section-header p,
+    .intro-copy,
+    .info-block p,
+    .card p,
+    .legal-box p,
+    .cta-box p,
+    .footer p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 17px;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .intro-panel,
+    .info-block,
+    .legal-box,
+    .cta-box {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .intro-panel {
+      padding: 36px;
+    }
+
+    .intro-aside {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 22px;
+      background:
+        linear-gradient(180deg, rgba(200,169,107,0.12), rgba(255,255,255,0.02)),
+        var(--panel);
+      border: 1px solid rgba(200,169,107,0.16);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .intro-aside strong {
+      display: block;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .intro-aside span {
+      display: block;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .card {
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(200,169,107,0.30);
+    }
+
+    .card-media {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #1a1a1f;
+    }
+
+    .card-media img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card-media img {
+      transform: scale(1.05);
+    }
+
+    .card-body {
+      padding: 26px 24px 26px;
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      color: var(--white);
+      font-size: 27px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .card p {
+      margin: 0 0 18px;
+      font-size: 16px;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    body.rtl .card ul {
+      padding-left: 0;
+      padding-right: 18px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .info-block {
+      padding: 28px;
+    }
+
+    .step-number {
+      display: inline-flex;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin-bottom: 18px;
+      color: #0b0b0d;
+      font-weight: 700;
+      background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+    }
+
+    .info-block h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .legal-box {
+      padding: 34px;
+      margin-top: 26px;
+      border-color: rgba(200,169,107,0.16);
+    }
+
+    .cta-wrap {
+      padding-top: 20px;
+    }
+
+    .cta-box {
+      padding: 44px 38px;
+      text-align: center;
+      background:
+        radial-gradient(circle at top, rgba(200,169,107,0.12), transparent 42%),
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border-color: rgba(200,169,107,0.16);
+    }
+
+    .cta-box p {
+      max-width: 720px;
+      margin: 0 auto 24px;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 40px 0 60px;
+      background: rgba(255,255,255,0.01);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer strong {
+      color: var(--white);
+    }
+
+    .footer p {
+      margin: 6px 0;
+      font-size: 14px;
+    }
+
+    .muted-small {
+      color: #9f998e;
+      font-size: 13px;
+    }
+
+    @media (max-width: 1024px) {
+      .cards,
+      .steps,
+      .intro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 84vh;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-top,
+      .nav-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .lang-switcher {
+        justify-content: center;
+      }
+
+      .nav-links {
+        justify-content: center;
+      }
+
+      .nav-cta {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(var(--max), calc(100% - 24px));
+      }
+
+      .hero-content {
+        padding: 92px 0 76px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .section {
+        padding: 74px 0;
+      }
+
+      .intro-panel,
+      .intro-aside,
+      .info-block,
+      .legal-box,
+      .cta-box {
+        padding: 24px;
+      }
+
+      h3 {
+        font-size: 23px;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="header-top">
+        <div class="brand">
+          <img src="tpe-logo-icon.png" alt="TPE logo">
+          <div class="brand-text">
+            <span class="brand-kicker" id="brandKicker">Private Brand</span>
+            <span class="brand-name" id="brandName">Tenerife Private Experiences</span>
+          </div>
+        </div>
+
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="fr">FR</button>
+          <button class="lang-btn" data-lang="es">ES</button>
+          <button class="lang-btn" data-lang="de">DE</button>
+          <button class="lang-btn" data-lang="ru">RU</button>
+          <button class="lang-btn" data-lang="ar">AR</button>
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <nav class="nav-links">
+          <a href="#experiences" id="navExperiences">Experiences</a>
+          <a href="#how-it-works" id="navHow">How It Works</a>
+          <a href="#approach" id="navApproach">Our Approach</a>
+        </nav>
+
+        <a class="nav-cta" href="#contact" id="navCta">Plan Your Experience</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="eyebrow" id="heroEyebrow">Bespoke Tenerife Experiences</span>
+        <h1 id="heroTitle">Experience Tenerife, Privately.</h1>
+        <p id="heroText">
+          Bespoke golf, wine and lifestyle experiences — carefully curated and personally arranged with discretion, elegance and premium attention to detail.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary" id="heroBtnPrimary">Plan My Experience</a>
+          <a href="mailto:contact@tsolepou.com" class="btn btn-secondary" id="heroBtnSecondary">Contact Concierge</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-panel">
+          <span class="section-kicker" id="introKicker">Tailored, Not Standard</span>
+          <h2 id="introTitle">Not a Tour. A Tailored Experience.</h2>
+          <p class="intro-copy" id="introText1">
+            We operate as a private concierge service, connecting you with Tenerife’s finest venues and trusted providers. Every experience is designed around your preferences, your pace and your standards.
+          </p>
+          <p class="intro-copy" id="introText2">
+            Whether you are planning a refined golf day, a memorable wine escape or a bespoke island itinerary, we coordinate the details so your time in Tenerife feels effortless, elevated and truly personal.
+          </p>
+        </div>
+
+        <div class="intro-aside">
+          <div>
+            <strong id="aside1Title">Private & Personal</strong>
+            <span id="aside1Text">Every request is handled individually with a discreet, client-first approach.</span>
+          </div>
+          <div>
+            <strong id="aside2Title">Trusted Partners</strong>
+            <span id="aside2Text">We collaborate with selected third-party providers across Tenerife.</span>
+          </div>
+          <div>
+            <strong id="aside3Title">Seamless Coordination</strong>
+            <span id="aside3Text">From reservations to recommendations, we manage the details around your plans.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="experiences">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker" id="expKicker">Signature Experiences</span>
+        <h2 id="expTitle">Curated Around Your Preferences</h2>
+        <p id="expText">
+          A refined selection of Tenerife experiences arranged with care, quality and premium positioning.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-media">
+            <img src="golf.jpg" alt="Golf Experience">
+          </div>
+          <div class="card-body">
+            <h3 id="card1Title">Golf</h3>
+            <p id="card1Text">Access Tenerife’s most iconic courses with personalized coordination and a premium approach to your day.</p>
+            <ul>
+              <li id="card1Bullet1">Tee-time coordination</li>
+              <li id="card1Bullet2">Course recommendations</li>
+              <li id="card1Bullet3">Dining and after-play planning</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media">
+            <img src="wine.jpg" alt="Wine Experience">
+          </div>
+          <div class="card-body">
+            <h3 id="card2Title">Wine</h3>
+            <p id="card2Text">Discover volcanic wines through curated tastings, vineyard visits and carefully selected local settings.</p>
+            <ul>
+              <li id="card2Bullet1">Curated tastings</li>
+              <li id="card2Bullet2">Vineyard visits</li>
+              <li id="card2Bullet3">Food pairing recommendations</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media">
+            <img src="lifestyle.jpg" alt="Lifestyle Experience">
+          </div>
+          <div class="card-body">
+            <h3 id="card3Title">Lifestyle</h3>
+            <p id="card3Text">From scenic escapes to exclusive moments, every detail is arranged to match your style and pace.</p>
+            <ul>
+              <li id="card3Bullet1">Bespoke day planning</li>
+              <li id="card3Bullet2">Selected island recommendations</li>
+              <li id="card3Bullet3">Flexible, premium coordination</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker" id="howKicker">Concierge Process</span>
+        <h2 id="howTitle">How It Works</h2>
+      </div>
+
+      <div class="steps">
+        <div class="info-block">
+          <div class="step-number">1</div>
+          <h3 id="step1Title">Tell Us Your Vision</h3>
+          <p id="step1Text">Share your dates, interests and preferences so we can understand the experience you want to create.</p>
+        </div>
+
+        <div class="info-block">
+          <div class="step-number">2</div>
+          <h3 id="step2Title">We Curate</h3>
+          <p id="step2Text">We design your experience and coordinate arrangements with trusted providers aligned with your request.</p>
+        </div>
+
+        <div class="info-block">
+          <div class="step-number">3</div>
+          <h3 id="step3Title">You Enjoy</h3>
+          <p id="step3Text">You enjoy a seamless experience while providers deliver the relevant services directly.</p>
+        </div>
+      </div>
+
+      <div class="legal-box" id="approach">
+        <span class="section-kicker" id="approachKicker">Our Approach</span>
+        <h2 id="approachTitle">Premium Coordination, Clear Positioning</h2>
+        <p id="approachText">
+          We act as an independent private concierge service and collaborate with selected third-party providers across Tenerife. Services and experiences are fulfilled by the relevant provider.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-wrap" id="contact">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-kicker" id="ctaKicker">Start Planning</span>
+        <h2 id="ctaTitle">Begin Your Tenerife Experience</h2>
+        <p id="ctaText">
+          Tell us what you have in mind and we will help shape a refined, personalised experience around your preferences.
+        </p>
+        <div class="hero-actions" style="justify-content:center;">
+          <a href="mailto:contact@tsolepou.com" class="btn btn-primary" id="ctaBtn1">Contact Concierge</a>
+          <a href="#top" class="btn btn-secondary" id="ctaBtn2">Back to Top</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <p><strong id="footerBrand">Tenerife Private Experiences</strong></p>
+        <p id="footerLine1">Private concierge service in Tenerife</p>
+        <p id="footerLine2">Operated by <strong>TSOLEPOU INTERNATIONAL SL</strong></p>
+      </div>
+
+      <div>
+        <p class="muted-small" id="footerLegal">
+          We act as an independent concierge service. All services are provided by third-party operators.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        title: "Tenerife Private Experiences",
+        description: "Bespoke golf, wine and lifestyle experiences in Tenerife. Carefully curated and privately arranged.",
+        dir: "ltr",
+        brandKicker: "Private Brand",
+        brandName: "Tenerife Private Experiences",
+        navExperiences: "Experiences",
+        navHow: "How It Works",
+        navApproach: "Our Approach",
+        navCta: "Plan Your Experience",
+        heroEyebrow: "Bespoke Tenerife Experiences",
+        heroTitle: "Experience Tenerife, Privately.",
+        heroText: "Bespoke golf, wine and lifestyle experiences — carefully curated and personally arranged with discretion, elegance and premium attention to detail.",
+        heroBtnPrimary: "Plan My Experience",
+        heroBtnSecondary: "Contact Concierge",
+        introKicker: "Tailored, Not Standard",
+        introTitle: "Not a Tour. A Tailored Experience.",
+        introText1: "We operate as a private concierge service, connecting you with Tenerife’s finest venues and trusted providers. Every experience is designed around your preferences, your pace and your standards.",
+        introText2: "Whether you are planning a refined golf day, a memorable wine escape or a bespoke island itinerary, we coordinate the details so your time in Tenerife feels effortless, elevated and truly personal.",
+        aside1Title: "Private & Personal",
+        aside1Text: "Every request is handled individually with a discreet, client-first approach.",
+        aside2Title: "Trusted Partners",
+        aside2Text: "We collaborate with selected third-party providers across Tenerife.",
+        aside3Title: "Seamless Coordination",
+        aside3Text: "From reservations to recommendations, we manage the details around your plans.",
+        expKicker: "Signature Experiences",
+        expTitle: "Curated Around Your Preferences",
+        expText: "A refined selection of Tenerife experiences arranged with care, quality and premium positioning.",
+        card1Title: "Golf",
+        card1Text: "Access Tenerife’s most iconic courses with personalized coordination and a premium approach to your day.",
+        card1Bullet1: "Tee-time coordination",
+        card1Bullet2: "Course recommendations",
+        card1Bullet3: "Dining and after-play planning",
+        card2Title: "Wine",
+        card2Text: "Discover volcanic wines through curated tastings, vineyard visits and carefully selected local settings.",
+        card2Bullet1: "Curated tastings",
+        card2Bullet2: "Vineyard visits",
+        card2Bullet3: "Food pairing recommendations",
+        card3Title: "Lifestyle",
+        card3Text: "From scenic escapes to exclusive moments, every detail is arranged to match your style and pace.",
+        card3Bullet1: "Bespoke day planning",
+        card3Bullet2: "Selected island recommendations",
+        card3Bullet3: "Flexible, premium coordination",
+        howKicker: "Concierge Process",
+        howTitle: "How It Works",
+        step1Title: "Tell Us Your Vision",
+        step1Text: "Share your dates, interests and preferences so we can understand the experience you want to create.",
+        step2Title: "We Curate",
+        step2Text: "We design your experience and coordinate arrangements with trusted providers aligned with your request.",
+        step3Title: "You Enjoy",
+        step3Text: "You enjoy a seamless experience while providers deliver the relevant services directly.",
+        approachKicker: "Our Approach",
+        approachTitle: "Premium Coordination, Clear Positioning",
+        approachText: "We act as an independent private concierge service and collaborate with selected third-party providers across Tenerife. Services and experiences are fulfilled by the relevant provider.",
+        ctaKicker: "Start Planning",
+        ctaTitle: "Begin Your Tenerife Experience",
+        ctaText: "Tell us what you have in mind and we will help shape a refined, personalised experience around your preferences.",
+        ctaBtn1: "Contact Concierge",
+        ctaBtn2: "Back to Top",
+        footerBrand: "Tenerife Private Experiences",
+        footerLine1: "Private concierge service in Tenerife",
+        footerLine2: "Operated by TSOLEPOU INTERNATIONAL SL",
+        footerLegal: "We act as an independent concierge service. All services are provided by third-party operators."
+      },
+      fr: {
+        title: "Expériences Privées à Tenerife",
+        description: "Expériences de golf, vin et art de vivre à Tenerife. Soigneusement sélectionnées et organisées en toute discrétion.",
+        dir: "ltr",
+        brandKicker: "Marque Privée",
+        brandName: "Expériences Privées à Tenerife",
+        navExperiences: "Expériences",
+        navHow: "Fonctionnement",
+        navApproach: "Notre Approche",
+        navCta: "Planifier Votre Expérience",
+        heroEyebrow: "Expériences Sur Mesure à Tenerife",
+        heroTitle: "Vivez Tenerife, en Privé.",
+        heroText: "Des expériences sur mesure autour du golf, du vin et de l’art de vivre — soigneusement sélectionnées et organisées avec discrétion, élégance et attention premium aux détails.",
+        heroBtnPrimary: "Planifier Mon Expérience",
+        heroBtnSecondary: "Contacter le Concierge",
+        introKicker: "Sur Mesure, Jamais Standard",
+        introTitle: "Pas une visite. Une expérience sur mesure.",
+        introText1: "Nous opérons comme un service de conciergerie privée, en vous mettant en relation avec les meilleurs lieux et partenaires de confiance à Tenerife. Chaque expérience est pensée selon vos préférences, votre rythme et vos standards.",
+        introText2: "Qu’il s’agisse d’une journée golf raffinée, d’une parenthèse œnologique mémorable ou d’un itinéraire insulaire personnalisé, nous coordonnons les détails pour que votre temps à Tenerife soit fluide, élevé et véritablement personnel.",
+        aside1Title: "Privé & Personnel",
+        aside1Text: "Chaque demande est traitée individuellement avec une approche discrète et centrée sur le client.",
+        aside2Title: "Partenaires de Confiance",
+        aside2Text: "Nous collaborons avec des prestataires tiers soigneusement sélectionnés à travers Tenerife.",
+        aside3Title: "Coordination Fluide",
+        aside3Text: "Des réservations aux recommandations, nous gérons les détails autour de vos projets.",
+        expKicker: "Expériences Signature",
+        expTitle: "Pensées Autour de Vos Préférences",
+        expText: "Une sélection raffinée d’expériences à Tenerife, organisée avec soin, qualité et positionnement premium.",
+        card1Title: "Golf",
+        card1Text: "Accédez aux parcours les plus emblématiques de Tenerife avec une coordination personnalisée et une approche premium de votre journée.",
+        card1Bullet1: "Coordination des départs",
+        card1Bullet2: "Recommandations de parcours",
+        card1Bullet3: "Organisation restauration et après-golf",
+        card2Title: "Vin",
+        card2Text: "Découvrez les vins volcaniques à travers des dégustations organisées, des visites de vignobles et des lieux soigneusement sélectionnés.",
+        card2Bullet1: "Dégustations organisées",
+        card2Bullet2: "Visites de vignobles",
+        card2Bullet3: "Suggestions d’accords mets-vins",
+        card3Title: "Lifestyle",
+        card3Text: "Des escapades panoramiques aux moments exclusifs, chaque détail est pensé pour correspondre à votre style et à votre rythme.",
+        card3Bullet1: "Journées sur mesure",
+        card3Bullet2: "Recommandations sélectionnées",
+        card3Bullet3: "Coordination flexible et premium",
+        howKicker: "Processus Concierge",
+        howTitle: "Comment Cela Fonctionne",
+        step1Title: "Partagez Votre Vision",
+        step1Text: "Indiquez vos dates, vos centres d’intérêt et vos préférences afin que nous comprenions l’expérience que vous souhaitez créer.",
+        step2Title: "Nous Organisons",
+        step2Text: "Nous concevons votre expérience et coordonnons les arrangements avec des partenaires de confiance adaptés à votre demande.",
+        step3Title: "Vous Profitez",
+        step3Text: "Vous profitez d’une expérience fluide pendant que les prestataires assurent directement les services concernés.",
+        approachKicker: "Notre Approche",
+        approachTitle: "Coordination Premium, Positionnement Clair",
+        approachText: "Nous agissons comme un service de conciergerie privée indépendant et collaborons avec des prestataires tiers sélectionnés à travers Tenerife. Les services et expériences sont assurés par le prestataire concerné.",
+        ctaKicker: "Commencer",
+        ctaTitle: "Commencez Votre Expérience à Tenerife",
+        ctaText: "Dites-nous ce que vous avez en tête et nous vous aiderons à façonner une expérience raffinée et personnalisée selon vos préférences.",
+        ctaBtn1: "Contacter le Concierge",
+        ctaBtn2: "Retour en Haut",
+        footerBrand: "Expériences Privées à Tenerife",
+        footerLine1: "Service de conciergerie privée à Tenerife",
+        footerLine2: "Exploité par TSOLEPOU INTERNATIONAL SL",
+        footerLegal: "Nous agissons en tant que service de conciergerie indépendant. Tous les services sont fournis par des opérateurs tiers."
+      },
+      es: {
+        title: "Experiencias Privadas en Tenerife",
+        description: "Experiencias de golf, vino y estilo de vida en Tenerife. Cuidadosamente seleccionadas y organizadas en privado.",
+        dir: "ltr",
+        brandKicker: "Marca Privada",
+        brandName: "Experiencias Privadas en Tenerife",
+        navExperiences: "Experiencias",
+        navHow: "Cómo Funciona",
+        navApproach: "Nuestro Enfoque",
+        navCta: "Planifica Tu Experiencia",
+        heroEyebrow: "Experiencias a Medida en Tenerife",
+        heroTitle: "Vive Tenerife, en Privado.",
+        heroText: "Experiencias a medida de golf, vino y estilo de vida — cuidadosamente seleccionadas y organizadas con discreción, elegancia y atención premium al detalle.",
+        heroBtnPrimary: "Planificar Mi Experiencia",
+        heroBtnSecondary: "Contactar Concierge",
+        introKicker: "A Medida, No Estándar",
+        introTitle: "No es un tour. Es una experiencia a medida.",
+        introText1: "Operamos como un servicio de concierge privado, conectándote con los mejores espacios y proveedores de confianza de Tenerife. Cada experiencia se diseña según tus preferencias, tu ritmo y tus estándares.",
+        introText2: "Ya sea un refinado día de golf, una escapada enológica memorable o un itinerario personalizado por la isla, coordinamos los detalles para que tu tiempo en Tenerife sea fluido, elevado y verdaderamente personal.",
+        aside1Title: "Privado y Personal",
+        aside1Text: "Cada solicitud se gestiona de forma individual con un enfoque discreto y centrado en el cliente.",
+        aside2Title: "Socios de Confianza",
+        aside2Text: "Colaboramos con proveedores externos cuidadosamente seleccionados en Tenerife.",
+        aside3Title: "Coordinación Fluida",
+        aside3Text: "Desde reservas hasta recomendaciones, gestionamos los detalles alrededor de tus planes.",
+        expKicker: "Experiencias Signature",
+        expTitle: "Diseñadas en Torno a Tus Preferencias",
+        expText: "Una refinada selección de experiencias en Tenerife organizadas con cuidado, calidad y posicionamiento premium.",
+        card1Title: "Golf",
+        card1Text: "Accede a los campos más emblemáticos de Tenerife con coordinación personalizada y un enfoque premium para tu día.",
+        card1Bullet1: "Coordinación de tee times",
+        card1Bullet2: "Recomendaciones de campos",
+        card1Bullet3: "Planificación de restauración y post-golf",
+        card2Title: "Vino",
+        card2Text: "Descubre vinos volcánicos a través de catas organizadas, visitas a viñedos y entornos locales cuidadosamente seleccionados.",
+        card2Bullet1: "Catas organizadas",
+        card2Bullet2: "Visitas a viñedos",
+        card2Bullet3: "Recomendaciones de maridaje",
+        card3Title: "Lifestyle",
+        card3Text: "Desde escapadas panorámicas hasta momentos exclusivos, cada detalle se organiza para adaptarse a tu estilo y ritmo.",
+        card3Bullet1: "Planificación de días a medida",
+        card3Bullet2: "Recomendaciones seleccionadas de la isla",
+        card3Bullet3: "Coordinación flexible y premium",
+        howKicker: "Proceso Concierge",
+        howTitle: "Cómo Funciona",
+        step1Title: "Cuéntanos Tu Visión",
+        step1Text: "Comparte tus fechas, intereses y preferencias para que podamos entender la experiencia que deseas crear.",
+        step2Title: "Nosotros Diseñamos",
+        step2Text: "Diseñamos tu experiencia y coordinamos los arreglos con proveedores de confianza alineados con tu solicitud.",
+        step3Title: "Tú Disfrutas",
+        step3Text: "Disfrutas de una experiencia fluida mientras los proveedores prestan directamente los servicios correspondientes.",
+        approachKicker: "Nuestro Enfoque",
+        approachTitle: "Coordinación Premium, Posicionamiento Claro",
+        approachText: "Actuamos como un servicio de concierge privado independiente y colaboramos con proveedores externos seleccionados en Tenerife. Los servicios y experiencias son prestados por el proveedor correspondiente.",
+        ctaKicker: "Empieza a Planificar",
+        ctaTitle: "Comienza Tu Experiencia en Tenerife",
+        ctaText: "Cuéntanos lo que tienes en mente y te ayudaremos a dar forma a una experiencia refinada y personalizada según tus preferencias.",
+        ctaBtn1: "Contactar Concierge",
+        ctaBtn2: "Volver Arriba",
+        footerBrand: "Experiencias Privadas en Tenerife",
+        footerLine1: "Servicio de concierge privado en Tenerife",
+        footerLine2: "Operado por TSOLEPOU INTERNATIONAL SL",
+        footerLegal: "Actuamos como un servicio de concierge independiente. Todos los servicios son prestados por operadores externos."
+      },
+      de: {
+        title: "Private Erlebnisse auf Teneriffa",
+        description: "Maßgeschneiderte Golf-, Wein- und Lifestyle-Erlebnisse auf Teneriffa. Sorgfältig kuratiert und privat organisiert.",
+        dir: "ltr",
+        brandKicker: "Private Marke",
+        brandName: "Private Erlebnisse auf Teneriffa",
+        navExperiences: "Erlebnisse",
+        navHow: "So Funktioniert Es",
+        navApproach: "Unser Ansatz",
+        navCta: "Erlebnis Planen",
+        heroEyebrow: "Maßgeschneiderte Erlebnisse auf Teneriffa",
+        heroTitle: "Erleben Sie Teneriffa, privat.",
+        heroText: "Maßgeschneiderte Golf-, Wein- und Lifestyle-Erlebnisse — sorgfältig kuratiert und persönlich organisiert, mit Diskretion, Eleganz und einem Premium-Anspruch bis ins Detail.",
+        heroBtnPrimary: "Mein Erlebnis Planen",
+        heroBtnSecondary: "Concierge Kontaktieren",
+        introKicker: "Maßgeschneidert, Nicht Standard",
+        introTitle: "Keine Tour. Ein maßgeschneidertes Erlebnis.",
+        introText1: "Wir arbeiten als privater Concierge-Service und verbinden Sie mit den besten Orten und vertrauenswürdigen Partnern auf Teneriffa. Jedes Erlebnis wird nach Ihren Wünschen, Ihrem Rhythmus und Ihren Ansprüchen gestaltet.",
+        introText2: "Ob raffinierter Golftag, unvergessliche Weinreise oder individuell zusammengestellte Inselroute — wir koordinieren die Details, damit Ihre Zeit auf Teneriffa mühelos, gehoben und wirklich persönlich wirkt.",
+        aside1Title: "Privat & Persönlich",
+        aside1Text: "Jede Anfrage wird individuell mit einem diskreten, kundenorientierten Ansatz betreut.",
+        aside2Title: "Vertrauenswürdige Partner",
+        aside2Text: "Wir arbeiten mit ausgewählten Drittanbietern auf Teneriffa zusammen.",
+        aside3Title: "Nahtlose Koordination",
+        aside3Text: "Von Reservierungen bis Empfehlungen kümmern wir uns um die Details rund um Ihre Pläne.",
+        expKicker: "Signature-Erlebnisse",
+        expTitle: "Rund um Ihre Vorlieben kuratiert",
+        expText: "Eine exklusive Auswahl an Teneriffa-Erlebnissen, arrangiert mit Sorgfalt, Qualität und Premium-Positionierung.",
+        card1Title: "Golf",
+        card1Text: "Zugang zu den bekanntesten Golfplätzen Teneriffas mit persönlicher Koordination und einem Premium-Ansatz für Ihren Tag.",
+        card1Bullet1: "Tee-Time-Koordination",
+        card1Bullet2: "Platzempfehlungen",
+        card1Bullet3: "Restaurant- und Nachspiel-Planung",
+        card2Title: "Wein",
+        card2Text: "Entdecken Sie vulkanische Weine durch kuratierte Verkostungen, Weinbergsbesuche und sorgfältig ausgewählte lokale Orte.",
+        card2Bullet1: "Kuratierte Verkostungen",
+        card2Bullet2: "Weinbergsbesuche",
+        card2Bullet3: "Empfehlungen für Food Pairing",
+        card3Title: "Lifestyle",
+        card3Text: "Von landschaftlichen Auszeiten bis zu exklusiven Momenten wird jedes Detail passend zu Ihrem Stil und Tempo arrangiert.",
+        card3Bullet1: "Maßgeschneiderte Tagesplanung",
+        card3Bullet2: "Ausgewählte Insel-Empfehlungen",
+        card3Bullet3: "Flexible Premium-Koordination",
+        howKicker: "Concierge-Ablauf",
+        howTitle: "So Funktioniert Es",
+        step1Title: "Teilen Sie Ihre Vorstellung",
+        step1Text: "Nennen Sie uns Ihre Daten, Interessen und Wünsche, damit wir das gewünschte Erlebnis verstehen.",
+        step2Title: "Wir Kuratieren",
+        step2Text: "Wir gestalten Ihr Erlebnis und koordinieren die Arrangements mit vertrauenswürdigen Partnern passend zu Ihrer Anfrage.",
+        step3Title: "Sie Genießen",
+        step3Text: "Sie genießen ein nahtloses Erlebnis, während die Anbieter die jeweiligen Leistungen direkt erbringen.",
+        approachKicker: "Unser Ansatz",
+        approachTitle: "Premium-Koordination, Klare Positionierung",
+        approachText: "Wir agieren als unabhängiger privater Concierge-Service und arbeiten mit ausgewählten Drittanbietern auf Teneriffa zusammen. Dienstleistungen und Erlebnisse werden vom jeweiligen Anbieter erbracht.",
+        ctaKicker: "Planung Beginnen",
+        ctaTitle: "Beginnen Sie Ihr Teneriffa-Erlebnis",
+        ctaText: "Teilen Sie uns Ihre Vorstellungen mit und wir helfen Ihnen, ein raffiniertes und persönliches Erlebnis nach Ihren Wünschen zu gestalten.",
+        ctaBtn1: "Concierge Kontaktieren",
+        ctaBtn2: "Nach Oben",
+        footerBrand: "Private Erlebnisse auf Teneriffa",
+        footerLine1: "Privater Concierge-Service auf Teneriffa",
+        footerLine2: "Betrieben von TSOLEPOU INTERNATIONAL SL",
+        footerLegal: "Wir handeln als unabhängiger Concierge-Service. Alle Leistungen werden von Drittanbietern erbracht."
+      },
+      ru: {
+        title: "Частные впечатления на Тенерифе",
+        description: "Индивидуальные впечатления в сфере гольфа, вина и образа жизни на Тенерифе. Тщательно подобрано и организовано в частном порядке.",
+        dir: "ltr",
+        brandKicker: "Частный Бренд",
+        brandName: "Частные впечатления на Тенерифе",
+        navExperiences: "Впечатления",
+        navHow: "Как Это Работает",
+        navApproach: "Наш Подход",
+        navCta: "Спланировать Впечатление",
+        heroEyebrow: "Индивидуальные впечатления на Тенерифе",
+        heroTitle: "Откройте Тенерифе в частном формате.",
+        heroText: "Индивидуальные впечатления в сфере гольфа, вина и образа жизни — тщательно подобранные и лично организованные с конфиденциальностью, элегантностью и премиальным вниманием к деталям.",
+        heroBtnPrimary: "Спланировать Моё Впечатление",
+        heroBtnSecondary: "Связаться с Concierge",
+        introKicker: "Индивидуально, А Не Стандартно",
+        introTitle: "Не тур. Индивидуальное впечатление.",
+        introText1: "Мы работаем как частный concierge-сервис, соединяя вас с лучшими локациями и надежными партнерами на Тенерифе. Каждое впечатление создается вокруг ваших предпочтений, вашего ритма и ваших стандартов.",
+        introText2: "Будь то изысканный день гольфа, запоминающийся винный опыт или персонально составленный маршрут по острову, мы координируем детали так, чтобы ваше время на Тенерифе было легким, возвышенным и по-настоящему личным.",
+        aside1Title: "Частно и Персонально",
+        aside1Text: "Каждый запрос рассматривается индивидуально с деликатным, ориентированным на клиента подходом.",
+        aside2Title: "Надежные Партнеры",
+        aside2Text: "Мы сотрудничаем с тщательно отобранными сторонними провайдерами по всему Тенерифе.",
+        aside3Title: "Безупречная Координация",
+        aside3Text: "От бронирований до рекомендаций — мы управляем деталями вокруг ваших планов.",
+        expKicker: "Signature Впечатления",
+        expTitle: "Создано вокруг ваших предпочтений",
+        expText: "Изысканная подборка впечатлений на Тенерифе, организованная с вниманием, качеством и премиальным позиционированием.",
+        card1Title: "Гольф",
+        card1Text: "Доступ к самым знаковым полям Тенерифе с персональной координацией и премиальным подходом к вашему дню.",
+        card1Bullet1: "Координация времени игры",
+        card1Bullet2: "Рекомендации по полям",
+        card1Bullet3: "Планирование ужина и послеигровой программы",
+        card2Title: "Вино",
+        card2Text: "Откройте для себя вулканические вина через организованные дегустации, посещения виноградников и тщательно подобранные местные локации.",
+        card2Bullet1: "Организованные дегустации",
+        card2Bullet2: "Посещения виноградников",
+        card2Bullet3: "Рекомендации по гастрономическим сочетаниям",
+        card3Title: "Lifestyle",
+        card3Text: "От живописных выездов до эксклюзивных моментов — каждая деталь подбирается под ваш стиль и темп.",
+        card3Bullet1: "Индивидуальное планирование дня",
+        card3Bullet2: "Подобранные рекомендации по острову",
+        card3Bullet3: "Гибкая премиальная координация",
+        howKicker: "Процесс Concierge",
+        howTitle: "Как Это Работает",
+        step1Title: "Расскажите Нам О Своем Видении",
+        step1Text: "Поделитесь датами, интересами и предпочтениями, чтобы мы поняли, какое впечатление вы хотите создать.",
+        step2Title: "Мы Подбираем",
+        step2Text: "Мы формируем ваше впечатление и координируем договоренности с надежными партнерами в соответствии с вашим запросом.",
+        step3Title: "Вы Наслаждаетесь",
+        step3Text: "Вы наслаждаетесь безупречным опытом, пока поставщики напрямую оказывают соответствующие услуги.",
+        approachKicker: "Наш Подход",
+        approachTitle: "Премиальная координация, ясное позиционирование",
+        approachText: "Мы действуем как независимый частный concierge-сервис и сотрудничаем с выбранными сторонними партнерами по всему Тенерифе. Услуги и впечатления предоставляются соответствующим провайдером.",
+        ctaKicker: "Начать Планирование",
+        ctaTitle: "Начните Свое Впечатление на Тенерифе",
+        ctaText: "Расскажите нам, что вы хотите, и мы поможем создать изысканный и персонализированный опыт вокруг ваших предпочтений.",
+        ctaBtn1: "Связаться с Concierge",
+        ctaBtn2: "Наверх",
+        footerBrand: "Частные впечатления на Тенерифе",
+        footerLine1: "Частный concierge-сервис на Тенерифе",
+        footerLine2: "Управляется TSOLEPOU INTERNATIONAL SL",
+        footerLegal: "Мы действуем как независимый concierge-сервис. Все услуги предоставляются сторонними операторами."
+      },
+      ar: {
+        title: "تجارب تينيريفي الخاصة",
+        description: "تجارب مخصصة في الجولف والنبيذ وأسلوب الحياة في تينيريفي. مختارة بعناية ومنسقة بخصوصية.",
+        dir: "rtl",
+        brandKicker: "علامة خاصة",
+        brandName: "تجارب تينيريفي الخاصة",
+        navExperiences: "التجارب",
+        navHow: "كيف تعمل",
+        navApproach: "نهجنا",
+        navCta: "خطط لتجربتك",
+        heroEyebrow: "تجارب تينيريفي المصممة خصيصاً",
+        heroTitle: "اكتشف تينيريفي بخصوصية.",
+        heroText: "تجارب مخصصة في الجولف والنبيذ وأسلوب الحياة — يتم اختيارها وتنظيمها بعناية مع الخصوصية والأناقة والاهتمام الراقي بالتفاصيل.",
+        heroBtnPrimary: "خطط لتجربتي",
+        heroBtnSecondary: "تواصل مع الكونسييرج",
+        introKicker: "مصممة خصيصاً وليست تقليدية",
+        introTitle: "ليست جولة. إنها تجربة مصممة خصيصاً.",
+        introText1: "نعمل كخدمة كونسيرج خاصة، ونربطك بأفضل الأماكن والمزودين الموثوقين في تينيريفي. كل تجربة تُصمم وفق تفضيلاتك وإيقاعك ومستوى توقعاتك.",
+        introText2: "سواء كنت تخطط ليوم جولف راقٍ أو تجربة نبيذ لا تُنسى أو برنامج جزيرة مصمم خصيصاً، فإننا ننسق التفاصيل لتكون إقامتك في تينيريفي سلسة وراقية وشخصية بحق.",
+        aside1Title: "خصوصية وطابع شخصي",
+        aside1Text: "يتم التعامل مع كل طلب بشكل فردي بأسلوب راقٍ ومتمحور حول العميل.",
+        aside2Title: "شركاء موثوقون",
+        aside2Text: "نتعاون مع مزودين خارجيين مختارين بعناية في أنحاء تينيريفي.",
+        aside3Title: "تنسيق سلس",
+        aside3Text: "من الحجوزات إلى التوصيات، ندير التفاصيل المحيطة بخططك.",
+        expKicker: "تجارب مميزة",
+        expTitle: "منسقة حول تفضيلاتك",
+        expText: "مجموعة راقية من تجارب تينيريفي يتم ترتيبها بعناية وجودة وتموضع فاخر.",
+        card1Title: "الجولف",
+        card1Text: "الوصول إلى أشهر ملاعب تينيريفي مع تنسيق شخصي ونهج فاخر ليومك.",
+        card1Bullet1: "تنسيق أوقات اللعب",
+        card1Bullet2: "توصيات الملاعب",
+        card1Bullet3: "تخطيط المطاعم وما بعد اللعب",
+        card2Title: "النبيذ",
+        card2Text: "اكتشف النبيذ البركاني من خلال تذوقات منظمة وزيارات للكروم وأماكن محلية مختارة بعناية.",
+        card2Bullet1: "تذوقات منسقة",
+        card2Bullet2: "زيارات للكروم",
+        card2Bullet3: "توصيات التوافق بين الطعام والنبيذ",
+        card3Title: "أسلوب الحياة",
+        card3Text: "من الرحلات ذات المناظر الخلابة إلى اللحظات الحصرية، يتم ترتيب كل تفصيل بما يتناسب مع أسلوبك وإيقاعك.",
+        card3Bullet1: "تخطيط يوم مخصص",
+        card3Bullet2: "توصيات مختارة داخل الجزيرة",
+        card3Bullet3: "تنسيق مرن وراقي",
+        howKicker: "آلية الكونسيرج",
+        howTitle: "كيف تعمل",
+        step1Title: "أخبرنا برؤيتك",
+        step1Text: "شاركنا تواريخك واهتماماتك وتفضيلاتك حتى نفهم التجربة التي ترغب في إنشائها.",
+        step2Title: "نحن ننسق",
+        step2Text: "نصمم تجربتك ونسق الترتيبات مع مزودين موثوقين يتناسبون مع طلبك.",
+        step3Title: "أنت تستمتع",
+        step3Text: "تستمتع بتجربة سلسة بينما يقوم المزودون بتقديم الخدمات ذات الصلة مباشرة.",
+        approachKicker: "نهجنا",
+        approachTitle: "تنسيق راقٍ وتموضع واضح",
+        approachText: "نعمل كخدمة كونسيرج خاصة مستقلة ونتعاون مع مزودين خارجيين مختارين في أنحاء تينيريفي. يتم تنفيذ الخدمات والتجارب من قبل المزود المعني.",
+        ctaKicker: "ابدأ التخطيط",
+        ctaTitle: "ابدأ تجربتك في تينيريفي",
+        ctaText: "أخبرنا بما يدور في ذهنك وسنساعدك في صياغة تجربة راقية ومخصصة وفق تفضيلاتك.",
+        ctaBtn1: "تواصل مع الكونسييرج",
+        ctaBtn2: "العودة للأعلى",
+        footerBrand: "تجارب تينيريفي الخاصة",
+        footerLine1: "خدمة كونسيرج خاصة في تينيريفي",
+        footerLine2: "تدار من قبل TSOLEPOU INTERNATIONAL SL",
+        footerLegal: "نعمل كخدمة كونسيرج مستقلة. جميع الخدمات يتم تقديمها من قبل جهات خارجية."
+      }
+    };
+
+    const ids = [
+      "brandKicker","brandName","navExperiences","navHow","navApproach","navCta",
+      "heroEyebrow","heroTitle","heroText","heroBtnPrimary","heroBtnSecondary",
+      "introKicker","introTitle","introText1","introText2",
+      "aside1Title","aside1Text","aside2Title","aside2Text","aside3Title","aside3Text",
+      "expKicker","expTitle","expText",
+      "card1Title","card1Text","card1Bullet1","card1Bullet2","card1Bullet3",
+      "card2Title","card2Text","card2Bullet1","card2Bullet2","card2Bullet3",
+      "card3Title","card3Text","card3Bullet1","card3Bullet2","card3Bullet3",
+      "howKicker","howTitle","step1Title","step1Text","step2Title","step2Text","step3Title","step3Text",
+      "approachKicker","approachTitle","approachText",
+      "ctaKicker","ctaTitle","ctaText","ctaBtn1","ctaBtn2",
+      "footerBrand","footerLine1","footerLine2","footerLegal"
+    ];
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const buttons = document.querySelectorAll(".lang-btn");
+
+    function setLanguage(lang) {
+      const t = translations[lang] || translations.en;
+
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && t[id]) el.textContent = t[id];
+      });
+
+      document.title = t.title;
+      metaDescription.setAttribute("content", t.description);
+      document.documentElement.lang = lang;
+      document.documentElement.dir = t.dir;
+      document.body.classList.toggle("rtl", t.dir === "rtl");
+
+      buttons.forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+
+      localStorage.setItem("tsolepouLandingLang", lang);
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
+    });
+
+    const savedLang = localStorage.getItem("tsolepouLandingLang") || "en";
+    setLanguage(savedLang);
+  </script>
+</body>
+</html>
