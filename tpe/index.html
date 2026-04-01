@@ -607,43 +607,15 @@ body::before {
       }
     }
 
- @media (max-width: 768px) {
+   @media (max-width: 768px) {
   .header-top,
   .nav-row {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .header-inner {
-    gap: 2px;
-    padding: 4px 0;
-  }
-
-  .header-top {
-    gap: 6px;
-  }
-
-  .brand {
-    gap: 6px;
-  }
-
-  .brand img {
-    width: 100px;
-    height: 100px;
-  }
-
-  .brand-name {
-    font-size: 16px;
-  }
-
   .lang-switcher {
     justify-content: center;
-    gap: 6px;
-  }
-
-  .lang-btn {
-    padding: 6px 8px;
-    font-size: 11px;
   }
 
   .nav-links {
@@ -655,15 +627,10 @@ body::before {
   }
 
   .hero {
-    min-height: 72vh;
     background:
       linear-gradient(90deg, rgba(8,8,10,0.82) 0%, rgba(8,8,10,0.58) 42%, rgba(8,8,10,0.30) 100%),
       linear-gradient(180deg, rgba(8,8,10,0.28) 0%, rgba(8,8,10,0.62) 100%),
       url("hero-main.jpg") center center / cover no-repeat;
-  }
-
-  .hero-content {
-    padding: 24px 0 56px;
   }
 
   .intro-bg-section {
@@ -672,7 +639,20 @@ body::before {
       url("teide.jpg") center center / cover no-repeat;
   }
 }
-    
+
+      .lang-switcher {
+        justify-content: center;
+      }
+
+      .nav-links {
+        justify-content: center;
+      }
+
+      .nav-cta {
+        width: 100%;
+      }
+    }
+
     @media (max-width: 640px) {
       .container {
         width: min(var(--max), calc(100% - 24px));
