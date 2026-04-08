@@ -1526,8 +1526,31 @@ form.addEventListener("submit", async (e) => {
 
     if (error) throw error;
 
-    alert("✅ Request submitted successfully");
-    form.reset();
+await fetch("https://formsubmit.co/ajax/contact@tsolepou.com", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json"
+  },
+  body: JSON.stringify({
+    _subject: `New Invest Lead: ${payload.full_name} (${payload.interest})`,
+    message:
+`New investment lead received.
+
+Full name: ${payload.full_name}
+Email: ${payload.email}
+Phone: ${payload.phone}
+Interest: ${payload.interest}
+Budget range: ${payload.budget_range}
+Timeline: ${payload.timeline}
+Preferred location: ${payload.preferred_location || ""}
+Notes: ${payload.notes || ""}
+Source: ${payload.source}`
+  })
+});
+
+alert(current.submitSuccess);
+form.reset();
 
   } catch (error) {
     console.error(error);
