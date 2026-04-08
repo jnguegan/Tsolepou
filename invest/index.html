@@ -14,7 +14,8 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
     rel="stylesheet"
   />
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
   <style>
     :root {
       --bg: #070809;
@@ -1497,6 +1498,56 @@
       // Placeholder for Supabase integration in the next step.
       alert("Form submitted. Next step: connect this form to Supabase.");
     });
+
+
+// ✅ SUPABASE CONFIG
+const SUPABASE_URL = "https://ervhuhwhneleqgkandqf.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVydmh1aHdobmVsZXFna2FuZHFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2NjMxMjQsImV4cCI6MjA5MTIzOTEyNH0.irMC8wpw52F71GFx1i_zIanFqSjeNA3nWzsLpnKZ0Hs";
+
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// ✅ FORM HANDLING
+const form = document.getElementById("investmentLeadForm");
+const submitButton = form.querySelector('button[type="submit"]');
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const payload = {
+    full_name: form.full_name.value.trim(),
+    email: form.email.value.trim(),
+    phone: form.phone.value.trim(),
+    interest: form.interest.value,
+    budget_range: form.budget_range.value,
+    timeline: form.timeline.value,
+    preferred_location: form.preferred_location.value.trim(),
+    notes: form.notes.value.trim(),
+    source: "tsolepou_invest"
+  };
+
+  try {
+    submitButton.disabled = true;
+    submitButton.textContent = "Submitting...";
+
+    const { error } = await supabaseClient
+      .from("investment_leads")
+      .insert([payload]);
+
+    if (error) throw error;
+
+    alert("✅ Request submitted successfully");
+    form.reset();
+
+  } catch (error) {
+    console.error(error);
+    alert("❌ Something went wrong");
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = "Submit Request";
+  }
+});
+    
+    
   </script>
 </body>
 </html>
