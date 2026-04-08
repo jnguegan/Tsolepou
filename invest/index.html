@@ -1490,16 +1490,7 @@
     const savedLanguage = localStorage.getItem("tsolepouInvestLanguage") || "en";
     setLanguage(savedLanguage);
 
-    const form = document.getElementById("investmentLeadForm");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      // Placeholder for Supabase integration in the next step.
-      alert("Form submitted. Next step: connect this form to Supabase.");
-    });
-
-
+    
 // ✅ SUPABASE CONFIG
 const SUPABASE_URL = "https://ervhuhwhneleqgkandqf.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVydmh1aHdobmVsZXFna2FuZHFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2NjMxMjQsImV4cCI6MjA5MTIzOTEyNH0.irMC8wpw52F71GFx1i_zIanFqSjeNA3nWzsLpnKZ0Hs";
