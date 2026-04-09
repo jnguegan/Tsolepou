@@ -660,6 +660,26 @@
       font-size: 0.85rem;
     }
 
+    .form-message {
+  margin-top: 20px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.form-message.success {
+  background: rgba(46, 204, 113, 0.08);
+  border: 1px solid rgba(46, 204, 113, 0.3);
+  color: #2ecc71;
+}
+
+.form-message.error {
+  background: rgba(231, 76, 60, 0.08);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  color: #e74c3c;
+}
+
     @media (max-width: 1080px) {
       .hero-inner,
       .intro-grid,
@@ -1497,12 +1517,16 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// ✅ FORM HANDLING
 const form = document.getElementById("investmentLeadForm");
 const submitButton = form.querySelector('button[type="submit"]');
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
+
+  const t = translations[localStorage.getItem("tsolepouInvestLanguage")] || translations.en;
+
+  submitButton.disabled = true;
+  submitButton.textContent = t.submitSending || "Submitting...";
 
   const payload = {
     full_name: form.full_name.value.trim(),
@@ -1517,50 +1541,46 @@ form.addEventListener("submit", async (e) => {
   };
 
   try {
-    submitButton.disabled = true;
-    submitButton.textContent = "Submitting...";
-
     const { error } = await supabaseClient
       .from("investment_leads")
       .insert([payload]);
 
     if (error) throw error;
 
-await fetch("https://formsubmit.co/ajax/jnguegan@gmail.com", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json"
-  },
-  body: JSON.stringify({
-    _subject: `New Invest Lead: ${payload.full_name} (${payload.interest})`,
-    message:
-`New investment lead received.
+    // ✅ Success UI (no popup)
+    showFormMessage("success", t.submitSuccess || "Request submitted successfully.");
 
-Full name: ${payload.full_name}
-Email: ${payload.email}
-Phone: ${payload.phone}
-Interest: ${payload.interest}
-Budget range: ${payload.budget_range}
-Timeline: ${payload.timeline}
-Preferred location: ${payload.preferred_location || ""}
-Notes: ${payload.notes || ""}
-Source: ${payload.source}`
-  })
-});
+    form.reset();
 
-alert(current.submitSuccess);
-form.reset();
+  } catch (err) {
+    console.error(err);
 
-  } catch (error) {
-    console.error(error);
-    alert("❌ Something went wrong");
+    // ❌ Error UI (no popup)
+    showFormMessage("error", t.submitError || "Something went wrong.");
+
   } finally {
     submitButton.disabled = false;
-    submitButton.textContent = "Submit Request";
+    submitButton.textContent = t.submitButton || "Submit Request";
   }
 });
-    
+
+    // your existing code
+  setLanguage(savedLang);
+
+  // ✅ ADD HERE
+  function showFormMessage(type, message) {
+    let container = document.getElementById("formMessage");
+
+    if (!container) {
+      container = document.createElement("div");
+      container.id = "formMessage";
+      document.getElementById("investmentLeadForm").appendChild(container);
+    }
+
+    container.textContent = message;
+    container.className = "form-message " + type;
+  }
+
     
   </script>
 </body>
