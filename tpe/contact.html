@@ -8,6 +8,9 @@
     name="description"
     content="Contact Tenerife Private Experiences to plan your bespoke golf, wine and lifestyle experience in Tenerife."
   />
+<!-- ✅ ADD THIS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
   <style>
     :root {
       --bg: #0b0b0d;
@@ -566,47 +569,45 @@
             Share a few details below and we will review your request.
           </p>
 
-          <form class="form-grid" action="https://formsubmit.co/contact@tsolepou.com" method="POST">
-            <input type="hidden" name="_subject" value="New Tenerife Private Experiences enquiry">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
+         <form class="form-grid" id="contactForm">
 
-            <div class="field-row">
-              <div>
-                <label for="fullName" id="labelName">Full name</label>
-                <input type="text" id="fullName" name="fullName" required>
-              </div>
+  <div class="field-row">
+    <div>
+      <label for="fullName" id="labelName">Full name</label>
+      <input type="text" id="fullName" name="full_name" required>
+    </div>
 
-              <div>
-                <label for="email" id="labelEmail">Email address</label>
-                <input type="email" id="email" name="email" required>
-              </div>
-            </div>
+    <div>
+      <label for="email" id="labelEmail">Email address</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+  </div>
 
-            <div class="field-row">
-              <div>
-                <label for="interest" id="labelInterest">Experience type</label>
-                <select id="interest" name="interest">
-                  <option value="Golf">Golf</option>
-                  <option value="Wine">Wine</option>
-                  <option value="Lifestyle">Lifestyle</option>
-                  <option value="Combination">Combination</option>
-                </select>
-              </div>
+  <div class="field-row">
+    <div>
+      <label for="interest" id="labelInterest">Experience type</label>
+      <select id="interest" name="experience_type">
+        <option value="Golf">Golf</option>
+        <option value="Wine">Wine</option>
+        <option value="Lifestyle">Lifestyle</option>
+        <option value="Combination">Combination</option>
+      </select>
+    </div>
 
-              <div>
-                <label for="dates" id="labelDates">Preferred dates</label>
-                <input type="text" id="dates" name="dates" placeholder="e.g. 12–15 May">
-              </div>
-            </div>
+    <div>
+      <label for="dates" id="labelDates">Preferred dates</label>
+      <input type="text" id="dates" name="preferred_date" placeholder="e.g. 12–15 May">
+    </div>
+  </div>
 
-            <div>
-              <label for="message" id="labelMessage">Your request</label>
-              <textarea id="message" name="message" placeholder="Tell us about your plans, preferences and any important details."></textarea>
-            </div>
+  <div>
+    <label for="message" id="labelMessage">Your request</label>
+    <textarea id="message" name="message" placeholder="Tell us about your plans..."></textarea>
+  </div>
 
-            <button type="submit" class="btn btn-primary" id="submitBtn">Send Request</button>
-          </form>
+  <button type="submit" class="btn btn-primary" id="submitBtn">Send Request</button>
+</form>  
+        
         </section>
       </div>
     </div>
@@ -937,6 +938,88 @@
 
     const savedLang = localStorage.getItem("tsolepouLandingLang") || "en";
     setLanguage(savedLang);
+
+<script>
+  const SUPABASE_URL = "YOUR_URL";
+  const SUPABASE_ANON_KEY = "YOUR_KEY";
+
+  const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
+
+  const form = document.getElementById("contactForm");
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending...";
+
+    const payload = {
+      full_name: form.full_name.value.trim(),
+      email: form.email.value.trim(),
+      experience_type: form.experience_type.value,
+      preferred_date: form.preferred_date.value,
+      message: form.message.value.trim(),
+      source: "tpe_contact"
+    };
+
+    try {
+      // ✅ Save to Supabase
+      const { error } = await supabaseClient
+        .from("tpe_requests")
+        .insert([payload]);
+
+      if (error) throw error;
+
+      // ✅ Email notification
+      await fetch("https://formsubmit.co/ajax/contact@tsolepou.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          _subject: `New TPE Request: ${payload.full_name}`,
+          message:
+`New request received:
+
+Name: ${payload.full_name}
+Email: ${payload.email}
+Experience: ${payload.experience_type}
+Dates: ${payload.preferred_date}
+Message: ${payload.message}`
+        })
+      });
+
+      showFormMessage("success", "Your request has been submitted successfully.");
+      form.reset();
+
+    } catch (err) {
+      console.error(err);
+      showFormMessage("error", "Something went wrong. Please try again.");
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = "Send Request";
+    }
+  });
+
+  function showFormMessage(type, message) {
+    let container = document.getElementById("formMessage");
+
+    if (!container) {
+      container = document.createElement("div");
+      container.id = "formMessage";
+      form.appendChild(container);
+    }
+
+    container.textContent = message;
+    container.className = "form-message " + type;
+  }
+</script>
+    
   </script>
 </body>
 </html>
