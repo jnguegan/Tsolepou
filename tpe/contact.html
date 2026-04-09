@@ -899,46 +899,49 @@
       }
     };
 
-    const ids = [
-      "brandKicker","brandName","navExperiences","navHow","navApproach","navContact","navCta",
-      "contactKicker","contactTitle","contactIntro",
-      "infoTitle","infoText","infoBullet1","infoBullet2","infoBullet3",
-      "emailLabel","emailValue","responseLabel","responseValue","noteLabel","noteValue",
-      "formTitle","formText","labelName","labelEmail","labelInterest","labelDates","labelMessage","submitBtn",
-      "footerBrand","footerLine1","footerLine2","footerLegal"
-    ];
+    <script>
+  const ids = [
+    "brandKicker","brandName","navExperiences","navHow","navApproach","navContact","navCta",
+    "contactKicker","contactTitle","contactIntro",
+    "infoTitle","infoText","infoBullet1","infoBullet2","infoBullet3",
+    "emailLabel","emailValue","responseLabel","responseValue","noteLabel","noteValue",
+    "formTitle","formText","labelName","labelEmail","labelInterest","labelDates","labelMessage","submitBtn",
+    "footerBrand","footerLine1","footerLine2","footerLegal"
+  ];
 
-    const metaDescription = document.querySelector('meta[name="description"]');
-    const buttons = document.querySelectorAll(".lang-btn");
+  const metaDescription = document.querySelector('meta[name="description"]');
+  const buttons = document.querySelectorAll(".lang-btn");
 
-    function setLanguage(lang) {
-      const t = translations[lang] || translations.en;
+  function setLanguage(lang) {
+    const t = translations[lang] || translations.en;
 
-      ids.forEach(id => {
-        const el = document.getElementById(id);
-        if (el && t[id]) el.textContent = t[id];
-      });
-
-      document.title = t.title;
-      metaDescription.setAttribute("content", t.description);
-      document.documentElement.lang = lang;
-      document.documentElement.dir = t.dir;
-      document.body.classList.toggle("rtl", t.dir === "rtl");
-
-      buttons.forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.lang === lang);
-      });
-
-      localStorage.setItem("tsolepouLandingLang", lang);
-    }
-
-    buttons.forEach(btn => {
-      btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && t[id]) el.textContent = t[id];
     });
 
-    const savedLang = localStorage.getItem("tsolepouLandingLang") || "en";
-    setLanguage(savedLang);
+    document.title = t.title;
+    metaDescription.setAttribute("content", t.description);
+    document.documentElement.lang = lang;
+    document.documentElement.dir = t.dir;
+    document.body.classList.toggle("rtl", t.dir === "rtl");
 
+    buttons.forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.lang === lang);
+    });
+
+    localStorage.setItem("tsolepouLandingLang", lang);
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
+  });
+
+  const savedLang = localStorage.getItem("tsolepouLandingLang") || "en";
+  setLanguage(savedLang);
+</script>
+
+<!-- ✅ SUPABASE SCRIPT (SEPARATE) -->
 <script>
   const SUPABASE_URL = "YOUR_URL";
   const SUPABASE_ANON_KEY = "YOUR_KEY";
@@ -967,32 +970,11 @@
     };
 
     try {
-      // ✅ Save to Supabase
       const { error } = await supabaseClient
         .from("tpe_requests")
         .insert([payload]);
 
       if (error) throw error;
-
-      // ✅ Email notification
-      await fetch("https://formsubmit.co/ajax/contact@tsolepou.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: JSON.stringify({
-          _subject: `New TPE Request: ${payload.full_name}`,
-          message:
-`New request received:
-
-Name: ${payload.full_name}
-Email: ${payload.email}
-Experience: ${payload.experience_type}
-Dates: ${payload.preferred_date}
-Message: ${payload.message}`
-        })
-      });
 
       showFormMessage("success", "Your request has been submitted successfully.");
       form.reset();
@@ -1019,7 +1001,6 @@ Message: ${payload.message}`
     container.className = "form-message " + type;
   }
 </script>
-    
-  </script>
+
 </body>
 </html>
