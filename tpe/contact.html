@@ -968,17 +968,41 @@
       source: "tpe_contact"
     };
 
-    try {
-      const { error } = await supabaseClient
-        .from("tpe_requests")
-        .insert([payload]);
+  try {
+  const { error } = await supabaseClient
+    .from("tpe_requests")
+    .insert([payload]);
 
-      if (error) throw error;
+  if (error) throw error;
 
-      showFormMessage("success", "Your request has been submitted successfully.");
-      form.reset();
+  try {
+    await fetch("https://formsubmit.co/ajax/jnguegan@gmail.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        _subject: `New TPE Request: ${payload.full_name || payload.email}`,
+        message:
+`New TPE request received:
 
-   } catch (err) {
+Name: ${payload.full_name}
+Email: ${payload.email}
+Experience: ${payload.experience_type}
+Dates: ${payload.preferred_date}
+Message: ${payload.message}
+Source: ${payload.source}`
+      })
+    });
+  } catch (emailErr) {
+    console.error("FormSubmit email failed:", emailErr);
+  }
+
+  showFormMessage("success", "Your request has been submitted successfully.");
+  form.reset();
+
+} catch (err) {
   console.error(err);
   showFormMessage("error", err.message || "Something went wrong. Please try again.");
 } finally {
