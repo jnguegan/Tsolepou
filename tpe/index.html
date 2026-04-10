@@ -726,8 +726,15 @@ body::before {
         align-items: stretch;
       }
 
-      .hero-actions .btn {
-  width: auto;
+    .hero-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.hero-actions .btn {
+  flex: 1;
+  text-align: center;
 }
 
       .section {
