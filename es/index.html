@@ -167,7 +167,7 @@
    <div class="row"><label>Correo electrónico<input type="email" name="email" autocomplete="email" required></label><label>País<input name="country" autocomplete="country-name"></label></div>
    <label>Tipo de organización<select name="type"><option>Universidad o centro de investigación</option><option>Ministerio o agencia pública</option><option>ONG o fundación</option><option>Empresa</option><option>Otro</option></select></label>
    <label>¿Cómo podemos ayudarle?<textarea name="message" required></textarea></label>
-   <label style="display:flex;gap:10px;align-items:flex-start;font-weight:400"><input type="checkbox" name="consent" required style="width:auto;margin-top:5px"> <span class="note">Acepto que Tsolepou International S.L. utilice estos datos para responder a mi consulta, según la <a href="/legal.html#privacy">política de privacidad</a>.</span></label>
+   <label style="display:flex;gap:10px;align-items:flex-start;font-weight:400"><input type="checkbox" name="consent" required style="width:auto;margin-top:5px"> <span class="note">Acepto que Tsolepou International S.L. utilice estos datos para responder a mi consulta, según la <a href="/legal/es/privacy.html">política de privacidad</a>.</span></label>
    <div><button class="btn" type="submit">Enviar consulta</button></div>
   </form>
  </div>
@@ -179,7 +179,7 @@
   <div class="cols">
    <div><b>Tsolepou International, S.L.</b><p style="margin:8px 0 0">Consultoría de gestión para la cooperación Europa–África.<br>Consultoría · Gestión · Emprendimiento</p></div>
    <div><b>Contacto</b><p style="margin:8px 0 0"><a href="mailto:tsolepousl@gmail.com">tsolepousl@gmail.com</a><br><a href="tel:+34624427903">+34 624 427 903</a><br>Santa Cruz de Tenerife, España</p></div>
-   <div><b>Sociedad</b><p style="margin:8px 0 0">CIF B01765387<br><a href="/legal.html">Aviso legal y privacidad</a></p></div>
+   <div><b>Sociedad</b><p style="margin:8px 0 0">CIF B01765387<br><a href="/legal/es/notice.html">Aviso legal</a><br><a href="/legal/es/privacy.html">Política de privacidad</a><br><a href="/legal/es/cookies.html">Política de cookies</a><br><a href="/legal/es/disclaimer.html">Exención de responsabilidad</a></p></div>
   </div>
   <div class="legal"><span>© <span id="y">2026</span> Tsolepou International, S.L. Todos los derechos reservados.</span><span>Rambla de Santa Cruz 149, 38001 Santa Cruz de Tenerife, España</span></div>
  </div>
@@ -198,5 +198,6 @@ try{const r=await fetch('/',{method:'POST',headers:{'Content-Type':'application/
 if(!r.ok)throw new Error(r.status);location.href=f.getAttribute('action');}
 catch(err){b.disabled=false;alert(document.documentElement.lang==='fr'?'Envoi impossible. Écrivez-nous à tsolepousl@gmail.com.':document.documentElement.lang==='es'?'No se pudo enviar. Escríbanos a tsolepousl@gmail.com.':'Sending failed. Please email tsolepousl@gmail.com.');}});})();
 </script>
+<script src="/assets/cookie-notice.js" defer></script>
 </body>
 </html>
