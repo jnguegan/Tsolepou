@@ -1,408 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TSOLEPOU INTERNATIONAL | Tenerife Private Experiences</title>
-  <meta
-    name="description"
-    content="TSOLEPOU INTERNATIONAL presents Tenerife Private Experiences. Bespoke experiences, curated privately."
-  />
-  <style>
-    :root {
-      --bg: #0b0b0d;
-      --bg-soft: #111116;
-      --text: #f5f2ea;
-      --muted: #b9b3a7;
-      --gold: #c8a96b;
-      --gold-soft: #e0c28d;
-      --line: rgba(255, 255, 255, 0.08);
-      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: "Inter", "Segoe UI", Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(200, 169, 107, 0.10), transparent 28%),
-        radial-gradient(circle at bottom right, rgba(200, 169, 107, 0.06), transparent 24%),
-        linear-gradient(180deg, #09090b 0%, #0d0d11 100%);
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      display: flex;
-      flex-direction: column;
-    }
-
-    body.rtl {
-      direction: rtl;
-      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .page {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    .topbar {
-      padding: 18px 20px 0;
-    }
-
-    .lang-switcher {
-      width: 100%;
-      max-width: 860px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .lang-btn {
-      appearance: none;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
-      color: var(--muted);
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-size: 13px;
-      line-height: 1;
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-
-    .lang-btn:hover {
-      color: var(--text);
-      border-color: rgba(200,169,107,0.35);
-    }
-
-    .lang-btn.active {
-      background: linear-gradient(180deg, rgba(200,169,107,0.18), rgba(200,169,107,0.08));
-      border-color: rgba(200,169,107,0.45);
-      color: var(--gold-soft);
-    }
-
-    .hero {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 28px 20px 32px;
-   background:
-    linear-gradient(90deg, rgba(8,8,10,0.82), rgba(8,8,10,0.30)),
-    url("hero-landing.jpg") center center / cover no-repeat fixed;
- }
-
-    .hero-card {
-      width: 100%;
-      max-width: 860px;
-      padding: 56px 36px;
-      text-align: center;
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015));
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(8px);
-    }
-
-    .brand-kicker {
-      display: inline-block;
-      margin-bottom: 22px;
-      font-size: 12px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    body.rtl .brand-kicker {
-      letter-spacing: 0.08em;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(34px, 6vw, 64px);
-      line-height: 1.02;
-      letter-spacing: -0.03em;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .subhead {
-      margin: 18px auto 0;
-      max-width: 620px;
-      font-size: clamp(18px, 2vw, 22px);
-      line-height: 1.7;
-      color: var(--muted);
-    }
-
-    .cta-wrap {
-      margin-top: 34px;
-    }
-
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 54px;
-      padding: 0 28px;
-      border-radius: 999px;
-      border: 1px solid rgba(200, 169, 107, 0.45);
-      background: linear-gradient(180deg, var(--gold-soft), var(--gold));
-      color: #0b0b0d;
-      font-size: 15px;
-      font-weight: 600;
-      transition: transform 0.25s ease, filter 0.25s ease, box-shadow 0.25s ease;
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.25);
-    }
-
-    .cta-btn:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.03);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
-    }
-
-    .trust {
-      padding: 0 20px 42px;
-    }
-
-    .trust-inner {
-      width: 100%;
-      max-width: 860px;
-      margin: 0 auto;
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px 24px;
-      text-align: center;
-    }
-
-    .trust-item {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .trust-item strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    @media (max-width: 640px) {
-      .topbar {
-        padding: 14px 12px 0;
-      }
-
-      .hero {
-        padding: 20px 12px 20px;
-             
-  }
-
-      .hero-card {
-        padding: 40px 22px;
-        border-radius: 22px;
-      }
-
-      .trust {
-        padding: 0 12px 28px;
-      }
-
-      .trust-inner {
-        gap: 8px 14px;
-      }
-
-      .trust-item {
-        width: 100%;
-      }
-
-      .lang-switcher {
-        gap: 8px;
-      }
-
-      .lang-btn {
-        font-size: 12px;
-        padding: 9px 12px;
-      }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tsolepou International | Europe–Africa project management &amp; consultancy</title>
+<meta name="description" content="Tsolepou International S.L. is a management consultancy in the Canary Islands, Spain. We connect European and African organisations, build EU-funded partnerships and manage international projects.">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="apple-touch-icon" href="/assets/favicon.png">
+<link rel="stylesheet" href="/assets/site.css">
+<meta property="og:title" content="Tsolepou International — Europe–Africa project management & consultancy">
+<meta property="og:description" content="Building partnerships between Europe and Africa, from the Canary Islands.">
+<meta property="og:image" content="https://tsolepou.com/assets/logo.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Tsolepou International S.L.","url":"https://tsolepou.com","logo":"https://tsolepou.com/assets/logo.png","foundingDate":"2020-07-21","taxID":"B01765387","email":"tsolepousl@gmail.com","telephone":"+34 624 427 903","address":{"@type":"PostalAddress","streetAddress":"Rambla de Santa Cruz 149","postalCode":"38001","addressLocality":"Santa Cruz de Tenerife","addressRegion":"Canary Islands","addressCountry":"ES"}}</script>
 </head>
 <body>
-  <div class="page">
-    <div class="topbar">
-      <div class="lang-switcher">
-        <button class="lang-btn active" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="fr">FR</button>
-        <button class="lang-btn" data-lang="es">ES</button>
-        <button class="lang-btn" data-lang="de">DE</button>
-        <button class="lang-btn" data-lang="ru">RU</button>
-        <button class="lang-btn" data-lang="ar">AR</button>
-      </div>
-    </div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+ <div class="wrap nav">
+  <a class="brand" href="/" aria-label="Tsolepou International home"><img src="/assets/mark.png" alt="" width="58" height="46"><span><b>TSOLEPOU</b><small>INTERNATIONAL</small></span></a>
+  <button class="menu" type="button" aria-expanded="false" aria-controls="links">Menu</button>
+  <nav class="links" id="links" aria-label="Main">
+   <a href="#services">Services</a><a href="#sectors">Sectors</a><a href="#approach">Approach</a><a href="#about">About</a>
+   <a class="btn small" href="#contact">Contact us</a>
+  </nav>
+ </div>
+</header>
 
-    <main class="hero">
-      <section class="hero-card">
-        <div class="brand-kicker" id="brandKicker">TSOLEPOU INTERNATIONAL</div>
-        <h1 id="headline">Tenerife Private Experiences</h1>
-        <p class="subhead" id="subhead">Bespoke experiences. Curated privately.</p>
-        <div class="cta-wrap">
-          <a class="cta-btn" id="ctaBtn" href="/tpe/">Enter Experience</a>
-        </div>
-      </section>
-    </main>
-
-    <footer class="trust">
-      <div class="trust-inner">
-        <div class="trust-item"><strong id="trust1">Operated by TSOLEPOU INTERNATIONAL SL</strong></div>
-        <div class="trust-item" id="trust2">Spanish company incorporated in 2020</div>
-        <div class="trust-item" id="trust3">Registered in Santa Cruz de Tenerife</div>
-      </div>
-    </footer>
+<main id="main">
+<section class="hero" style="padding:0">
+ <div class="wrap">
+  <div>
+   <p class="eyebrow">Consulting · Management · Entrepreneurship</p>
+   <h1>Connecting Europe and Africa through well-managed projects</h1>
+   <p class="lead">Tsolepou International is a management consultancy based in the Canary Islands, Spain. We help European and African organisations build partnerships, access international funding and deliver projects that last.</p>
+   <div class="cta"><a class="btn" href="#contact">Discuss a partnership</a><a class="btn ghost" href="#services">Our services</a></div>
   </div>
+  <div class="hero-art"><img src="/assets/mark.png" alt="Tsolepou International emblem: a globe encircled by the TI monogram" width="420" height="336"></div>
+ </div>
+</section>
 
-  <script>
-    const translations = {
-      en: {
-        brandKicker: "TSOLEPOU INTERNATIONAL",
-        headline: "Tenerife Private Experiences",
-        subhead: "Bespoke experiences. Curated privately.",
-        ctaBtn: "Enter Experience",
-        trust1: "Operated by TSOLEPOU INTERNATIONAL SL",
-        trust2: "Spanish company incorporated in 2020",
-        trust3: "Registered in Santa Cruz de Tenerife",
-        title: "TSOLEPOU INTERNATIONAL | Tenerife Private Experiences",
-        description: "TSOLEPOU INTERNATIONAL presents Tenerife Private Experiences. Bespoke experiences, curated privately.",
-        dir: "ltr",
-        lang: "en"
-      },
-      fr: {
-        brandKicker: "TSOLEPOU INTERNATIONAL",
-        headline: "Expériences Privées à Tenerife",
-        subhead: "Des expériences sur mesure. Conçues en toute discrétion.",
-        ctaBtn: "Entrer",
-        trust1: "Exploité par TSOLEPOU INTERNATIONAL SL",
-        trust2: "Société espagnole constituée en 2020",
-        trust3: "Immatriculée à Santa Cruz de Tenerife",
-        title: "TSOLEPOU INTERNATIONAL | Expériences Privées à Tenerife",
-        description: "TSOLEPOU INTERNATIONAL présente Expériences Privées à Tenerife. Des expériences sur mesure, conçues en toute discrétion.",
-        dir: "ltr",
-        lang: "fr"
-      },
-      es: {
-        brandKicker: "TSOLEPOU INTERNATIONAL",
-        headline: "Experiencias Privadas en Tenerife",
-        subhead: "Experiencias a medida. Cuidadosamente seleccionadas en privado.",
-        ctaBtn: "Entrar",
-        trust1: "Operado por TSOLEPOU INTERNATIONAL SL",
-        trust2: "Sociedad española constituida en 2020",
-        trust3: "Registrada en Santa Cruz de Tenerife",
-        title: "TSOLEPOU INTERNATIONAL | Experiencias Privadas en Tenerife",
-        description: "TSOLEPOU INTERNATIONAL presenta Experiencias Privadas en Tenerife. Experiencias a medida, seleccionadas en privado.",
-        dir: "ltr",
-        lang: "es"
-      },
-      de: {
-        brandKicker: "TSOLEPOU INTERNATIONAL",
-        headline: "Private Erlebnisse auf Teneriffa",
-        subhead: "Maßgeschneiderte Erlebnisse. Diskret kuratiert.",
-        ctaBtn: "Erlebnis betreten",
-        trust1: "Betrieben von TSOLEPOU INTERNATIONAL SL",
-        trust2: "Spanisches Unternehmen, gegründet 2020",
-        trust3: "Registriert in Santa Cruz de Tenerife",
-        title: "TSOLEPOU INTERNATIONAL | Private Erlebnisse auf Teneriffa",
-        description: "TSOLEPOU INTERNATIONAL präsentiert Private Erlebnisse auf Teneriffa. Maßgeschneiderte Erlebnisse, diskret kuratiert.",
-        dir: "ltr",
-        lang: "de"
-      },
-      ru: {
-        brandKicker: "TSOLEPOU INTERNATIONAL",
-        headline: "Частные впечатления на Тенерифе",
-        subhead: "Индивидуальные впечатления. Организовано конфиденциально.",
-        ctaBtn: "Перейти",
-        trust1: "Управляется TSOLEPOU INTERNATIONAL SL",
-        trust2: "Испанская компания, основанная в 2020 году",
-        trust3: "Зарегистрирована в Санта-Крус-де-Тенерифе",
-        title: "TSOLEPOU INTERNATIONAL | Частные впечатления на Тенерифе",
-        description: "TSOLEPOU INTERNATIONAL представляет частные впечатления на Тенерифе. Индивидуальные впечатления, организованные конфиденциально.",
-        dir: "ltr",
-        lang: "ru"
-      },
-      ar: {
-        brandKicker: "TSOLEPOU INTERNATIONAL",
-        headline: "تجارب تينيريفي الخاصة",
-        subhead: "تجارب مصممة خصيصاً. منسقة بخصوصية.",
-        ctaBtn: "الدخول إلى التجربة",
-        trust1: "تُدار من قبل TSOLEPOU INTERNATIONAL SL",
-        trust2: "شركة إسبانية تأسست في عام 2020",
-        trust3: "مسجلة في سانتا كروز دي تينيريفي",
-        title: "TSOLEPOU INTERNATIONAL | تجارب تينيريفي الخاصة",
-        description: "تقدم TSOLEPOU INTERNATIONAL تجارب تينيريفي الخاصة. تجارب مصممة خصيصاً ومنسقة بخصوصية.",
-        dir: "rtl",
-        lang: "ar"
-      }
-    };
+<div class="facts" role="list">
+ <div class="wrap">
+  <div class="fact" role="listitem"><span>Established</span><strong>2020, Santa Cruz de Tenerife</strong></div>
+  <div class="fact" role="listitem"><span>Legal entity</span><strong>Spanish S.L. · EU-registered</strong></div>
+  <div class="fact" role="listitem"><span>Focus</span><strong>Europe–Africa cooperation</strong></div>
+  <div class="fact" role="listitem"><span>Languages</span><strong>English · Français · Español</strong></div>
+ </div>
+</div>
 
-    const els = {
-      brandKicker: document.getElementById("brandKicker"),
-      headline: document.getElementById("headline"),
-      subhead: document.getElementById("subhead"),
-      ctaBtn: document.getElementById("ctaBtn"),
-      trust1: document.getElementById("trust1"),
-      trust2: document.getElementById("trust2"),
-      trust3: document.getElementById("trust3"),
-      metaDescription: document.querySelector('meta[name="description"]')
-    };
+<section id="bridge">
+ <div class="wrap bridge">
+  <div>
+   <p class="eyebrow">Why the Canary Islands</p>
+   <h2>Europe's closest point to Africa</h2>
+   <p style="color:var(--muted);font-size:17.5px">Our home is fully part of the European Union, yet closer to West Africa than to mainland Spain. It is a natural meeting point for the organisations we bring together.</p>
+   <ul>
+    <li><strong>EU-established.</strong> A Spanish company, eligible as a partner in EU programmes such as Horizon Europe.</li>
+    <li><strong>Africa-facing.</strong> Working with ministries, public agencies, NGOs, universities and businesses across the continent.</li>
+    <li><strong>Multilingual.</strong> English, French and Spanish, for anglophone and francophone Africa alike.</li>
+   </ul>
+  </div>
+  <div class="map stats">
+   <div><strong>≈100 km</strong><span>from the African coast</span></div>
+   <div><strong>EU</strong><span>Spain, an outermost region of the European Union</span></div>
+   <div><strong>UTC+0</strong><span>Same time zone as London, Dakar and Accra</span></div>
+   <div><strong>3</strong><span>Working languages: English, French, Spanish</span></div>
+  </div>
+ </div>
+ </div>
+</section>
 
-    const buttons = document.querySelectorAll(".lang-btn");
+<section id="services" class="alt">
+ <div class="wrap">
+  <div class="intro"><p class="eyebrow">Services</p><h2>What we do</h2><p>We take on the roles that make international partnerships work: finding the opportunity, building the team, managing delivery and making the results last.</p></div>
+  <div class="grid">
+   <div class="card"><div class="ico">1</div><h3>EU funding &amp; consortium building</h3><p>Identifying suitable calls, matching partners across Europe and Africa, and preparing competitive proposals.</p></div>
+   <div class="card"><div class="ico">2</div><h3>Project management &amp; coordination</h3><p>Planning, budgets, partner coordination, risk management and reporting to funders, from kick-off to final report.</p></div>
+   <div class="card"><div class="ico">3</div><h3>Stakeholder engagement in Africa</h3><p>Working with ministries, public agencies, local authorities, NGOs, universities and the private sector to secure local ownership.</p></div>
+   <div class="card"><div class="ico">4</div><h3>Communication &amp; dissemination</h3><p>Communication plans, events, publications and multilingual outreach that put project results in front of the people who use them.</p></div>
+   <div class="card"><div class="ico">5</div><h3>Monitoring, evaluation &amp; impact</h3><p>Indicators, data collection, evaluation and sustainability plans that show what changed and keep it going after funding ends.</p></div>
+   <div class="card"><div class="ico">6</div><h3>Europe–Africa business connections</h3><p>Market entry support, partner search and introductions for companies and investors working between the two continents.</p></div>
+  </div>
+ </div>
+</section>
 
-    function setLanguage(lang) {
-      const t = translations[lang] || translations.en;
+<section id="sectors">
+ <div class="wrap">
+  <div class="intro"><p class="eyebrow">Sectors</p><h2>Where we focus</h2><p>Areas where European and African priorities meet, and where international funding is most active.</p></div>
+  <div class="sectors">
+   <div class="sector"><h3>Agri-food &amp; climate resilience</h3><p>Sustainable farming, food security, water and adaptation to climate change.</p></div>
+   <div class="sector"><h3>Health &amp; wellbeing</h3><p>Public health programmes, health systems and community health initiatives.</p></div>
+   <div class="sector"><h3>Energy &amp; digital</h3><p>Energy access, renewables and digital solutions for public services and enterprise.</p></div>
+   <div class="sector"><h3>Education, youth &amp; sport</h3><p>Skills, entrepreneurship, youth exchange and sport for development.</p></div>
+  </div>
+ </div>
+</section>
 
-      els.brandKicker.textContent = t.brandKicker;
-      els.headline.textContent = t.headline;
-      els.subhead.textContent = t.subhead;
-      els.ctaBtn.textContent = t.ctaBtn;
-      els.trust1.textContent = t.trust1;
-      els.trust2.textContent = t.trust2;
-      els.trust3.textContent = t.trust3;
-      document.title = t.title;
-      els.metaDescription.setAttribute("content", t.description);
-      document.documentElement.lang = t.lang;
-      document.body.classList.toggle("rtl", t.dir === "rtl");
-      document.documentElement.dir = t.dir;
+<section id="approach" class="alt">
+ <div class="wrap">
+  <div class="intro"><p class="eyebrow">Approach</p><h2>How we work with partners</h2><p>A clear path from first idea to lasting results.</p></div>
+  <div class="steps">
+   <div class="step"><h3>Identify</h3><p>Find the right funding call or market opportunity for the idea.</p></div>
+   <div class="step"><h3>Partner</h3><p>Build a balanced consortium with complementary European and African partners.</p></div>
+   <div class="step"><h3>Prepare</h3><p>Shape the work plan, budget and proposal with every partner.</p></div>
+   <div class="step"><h3>Deliver</h3><p>Coordinate activities, deadlines, finances and reporting.</p></div>
+   <div class="step"><h3>Sustain</h3><p>Measure impact, share results and plan what comes next.</p></div>
+  </div>
+ </div>
+</section>
 
-      buttons.forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.lang === lang);
-      });
+<section id="partners">
+ <div class="wrap two">
+  <div class="panel dark">
+   <p class="eyebrow" style="color:#aeb8c8">For European organisations</p>
+   <h3>Looking for an EU partner with an African reach?</h3>
+   <ul><li>Universities and research centres building Horizon Europe consortia</li><li>Companies and NGOs planning projects with African partners</li><li>Teams that need coordination, engagement or dissemination capacity</li></ul>
+   <a class="btn" href="#contact">Talk to us</a>
+  </div>
+  <div class="panel">
+   <p class="eyebrow">For African organisations</p>
+   <h3>Looking to join international projects?</h3>
+   <ul><li>Ministries, public agencies and local authorities</li><li>NGOs, foundations and civil society organisations</li><li>Universities, research institutes and businesses</li></ul>
+   <a class="btn" href="#contact">Talk to us</a>
+  </div>
+ </div>
+</section>
 
-      localStorage.setItem("tsolepouLandingLang", lang);
-    }
+<section id="about" class="alt">
+ <div class="wrap about">
+  <div class="seal">
+   <img src="/assets/seal.png" alt="Tsolepou International S.L. company seal: CIF B01765387, founded 21/07/2020" width="240" height="240">
+   <dl>
+    <dt>Company</dt><dd>Tsolepou International, S.L.</dd>
+    <dt>CIF</dt><dd>B01765387</dd>
+    <dt>Founded</dt><dd>21 July 2020</dd>
+    <dt>Registered office</dt><dd>Rambla de Santa Cruz 149, 38001 Santa Cruz de Tenerife, Spain</dd>
+   </dl>
+  </div>
+  <div>
+   <p class="eyebrow">About</p>
+   <h2>An EU company built for Europe–Africa cooperation</h2>
+   <p style="color:var(--muted);font-size:17.5px">Tsolepou International was founded in Tenerife in 2020 as a management consultancy dedicated to project management and business connections between Europe and Africa. We work alongside universities, public institutions, NGOs and companies on both continents, bringing the coordination and local engagement that international projects need.</p>
+   <div class="person"><b>Jean-Paul Nguegang</b><span>Founder &amp; Director</span><p style="margin:0;color:var(--muted)">Entrepreneur with businesses in the United Kingdom and Spain, working across international payments, corporate advisory and project funding. Jean-Paul leads the company's partnerships and project coordination.</p></div>
+   <div class="affil"><b style="color:var(--navy)">Affiliated organisation: Fondation Tsolepou</b><p>Fondation Tsolepou is an independent non-profit foundation linked to our founder. Its social-impact work in Africa shares our commitment to cooperation between the two continents.</p></div>
+  </div>
+ </div>
+</section>
 
-    buttons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        setLanguage(btn.dataset.lang);
-      });
-    });
+<section id="contact">
+ <div class="wrap contact">
+  <div>
+   <p class="eyebrow">Contact</p>
+   <h2>Let's talk about your project</h2>
+   <p style="color:var(--muted);font-size:17.5px">Tell us about the opportunity, the partners you have and what you need. We reply within two working days.</p>
+   <p><strong>Email</strong><br><a href="mailto:tsolepousl@gmail.com">tsolepousl@gmail.com</a></p>
+   <p><strong>Telephone / WhatsApp</strong><br><a href="tel:+34624427903">+34 624 427 903</a></p>
+   <p><strong>Office</strong><br>Rambla de Santa Cruz 149<br>38001 Santa Cruz de Tenerife, Canary Islands, Spain</p>
+  </div>
+  <form name="contact" method="POST" data-netlify="true" netlify-honeypot="company_website" action="/thanks.html">
+   <input type="hidden" name="form-name" value="contact">
+   <p class="hp"><label>Leave empty <input name="company_website"></label></p>
+   <div class="row"><label>Full name<input name="name" autocomplete="name" required></label><label>Organisation<input name="organisation" autocomplete="organization"></label></div>
+   <div class="row"><label>Email<input type="email" name="email" autocomplete="email" required></label><label>Country<input name="country" autocomplete="country-name"></label></div>
+   <label>Type of organisation<select name="type"><option>University or research centre</option><option>Ministry or public agency</option><option>NGO or foundation</option><option>Company</option><option>Other</option></select></label>
+   <label>How can we help?<textarea name="message" required></textarea></label>
+   <label style="display:flex;gap:10px;align-items:flex-start;font-weight:400"><input type="checkbox" name="consent" required style="width:auto;margin-top:5px"> <span class="note">I agree that Tsolepou International S.L. may use these details to answer my enquiry, as described in the <a href="/legal.html#privacy">privacy notice</a>.</span></label>
+   <div><button class="btn" type="submit">Send enquiry</button></div>
+  </form>
+ </div>
+</section>
+</main>
 
-    const savedLang = localStorage.getItem("tsolepouLandingLang") || "en";
-    setLanguage(savedLang);
-  </script>
+<footer>
+ <div class="wrap">
+  <div class="cols">
+   <div><b>Tsolepou International, S.L.</b><p style="margin:8px 0 0">Management consultancy for Europe–Africa cooperation.<br>Consulting · Management · Entrepreneurship</p></div>
+   <div><b>Contact</b><p style="margin:8px 0 0"><a href="mailto:tsolepousl@gmail.com">tsolepousl@gmail.com</a><br><a href="tel:+34624427903">+34 624 427 903</a><br>Santa Cruz de Tenerife, Spain</p></div>
+   <div><b>Company</b><p style="margin:8px 0 0">CIF B01765387<br><a href="/legal.html">Legal notice &amp; privacy</a></p></div>
+  </div>
+  <div class="legal"><span>© <span id="y">2026</span> Tsolepou International, S.L. All rights reserved.</span><span>Rambla de Santa Cruz 149, 38001 Santa Cruz de Tenerife, Spain</span></div>
+ </div>
+</footer>
+<script>
+document.getElementById('y').textContent=new Date().getFullYear();
+const m=document.querySelector('.menu'),l=document.getElementById('links');
+m.addEventListener('click',()=>{const o=l.classList.toggle('open');m.setAttribute('aria-expanded',o)});
+l.addEventListener('click',e=>{if(e.target.tagName==='A'){l.classList.remove('open');m.setAttribute('aria-expanded','false')}});
+</script>
 </body>
 </html>
