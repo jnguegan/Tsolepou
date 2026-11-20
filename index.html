@@ -189,5 +189,13 @@ const m=document.querySelector('.menu'),l=document.getElementById('links');
 m.addEventListener('click',()=>{const o=l.classList.toggle('open');m.setAttribute('aria-expanded',o)});
 l.addEventListener('click',e=>{if(e.target.tagName==='A'){l.classList.remove('open');m.setAttribute('aria-expanded','false')}});
 </script>
+<script>
+(function(){const f=document.querySelector('form[name=contact]');if(!f)return;
+f.addEventListener('submit',async e=>{e.preventDefault();const b=f.querySelector('button[type=submit]');b.disabled=true;
+const body=new URLSearchParams(new FormData(f)).toString();
+try{const r=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body});
+if(!r.ok)throw new Error(r.status);location.href=f.getAttribute('action');}
+catch(err){b.disabled=false;alert(document.documentElement.lang==='fr'?'Envoi impossible. Écrivez-nous à tsolepousl@gmail.com.':document.documentElement.lang==='es'?'No se pudo enviar. Escríbanos a tsolepousl@gmail.com.':'Sending failed. Please email tsolepousl@gmail.com.');}});})();
+</script>
 </body>
 </html>
